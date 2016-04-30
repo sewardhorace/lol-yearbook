@@ -11,22 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160429183840) do
+ActiveRecord::Schema.define(version: 20160430215857) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.integer  "summoner_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "summoner_name"
   end
 
   create_table "champions", force: :cascade do |t|
     t.integer  "champion_id"
     t.integer  "book_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "name"
+    t.string   "title"
+    t.string   "img_url"
+    t.string   "highest_grade"
+    t.integer  "mastery_points"
+    t.integer  "mastery_level"
   end
 
   add_index "champions", ["book_id"], name: "index_champions_on_book_id", using: :btree

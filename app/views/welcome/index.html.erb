@@ -1,7 +1,8 @@
 <h2>Welcome to LOLHS</h2>
-<p>
-  Enter summoner name: <input type="text"></input>
-  <button>Search</button>
-  <br>
-  (this doesn't do anything yet)
-</p>
+<div>
+<%= form_tag("/search", method: "get") do %>
+  <%= label_tag(:summoner_name, "Enter Summoner Name:") %>
+  <%= text_field_tag(:summoner_name) %>
+  <%= submit_tag("Search") %>
+<% end %>
+</div>

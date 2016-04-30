@@ -1,0 +1,11 @@
+<h2><%= @book.summoner_id  %>'s Yearbook</h2>
+<p>
+  Here's where stuff will go
+</p>
+<ul>
+  <% @champions.each do |champ| %>
+  <li>
+    Champion ID# <%= champ["championId"] %>
+  </li>
+  <% end %>
+</ul>
