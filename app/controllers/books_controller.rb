@@ -1,7 +1,11 @@
 class BooksController < ApplicationController
   def search
-    summoner = RiotApi.summoner_by_name(search_params)
-    redirect_to book_path(summoner['id'])
+    if summoner = RiotApi.summoner_by_name(search_params) then
+      redirect_to book_path(summoner['id'])
+    else
+      raise ActionController::RoutingError.new('Not Found')
+      #TODO actually create a 404 page
+    end
   end
 
   def show
@@ -11,12 +15,13 @@ class BooksController < ApplicationController
     if @book = Book.find_by(summoner_id: params[:summoner_id])
       render "books/show"
     else
-      @book = Book.create(summoner_id: params[:summoner_id])
+      #@book = Book.create(summoner_id: params[:summoner_id])
       render "books/show"
     end
   end
 
-  def search_params
-    params.require(:summoner_name)
-  end
+  private
+    def search_params
+      params.require(:summoner_name)
+    end
 end
