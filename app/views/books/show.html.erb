@@ -9,7 +9,10 @@
 <ul>
   <% @book.champions.each do |champ| %>
   <li>
-    Champion: <%= champ.name %>
+  <div>
+    <img src="<%= champ.img_url %>" alt="<%= champ.name %> <%= champ.champion_id %>">
+    <p>Champion: <%= champ.name %></p>
+  </div>
   </li>
   <% end %>
 </ul>

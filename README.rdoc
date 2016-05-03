@@ -1,5 +1,10 @@
 == README
 
+TODO:
+UI
+locally save static champion data to reduce api calls? (i.e. name, title, img_url )
+
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
