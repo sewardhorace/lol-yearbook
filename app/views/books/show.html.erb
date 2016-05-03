@@ -1,11 +1,39 @@
-<h2><%= @book.summoner_id  %>'s Yearbook</h2>
+<h2><%= @book.summoner_name  %>'s Yearbook</h2>
+<div>
+<p class="status"></p>
+<button class="update">Update</button>
+</div>
 <p>
   Here's where stuff will go
 </p>
 <ul>
-  <% @champions.each do |champ| %>
+  <% @book.champions.each do |champ| %>
   <li>
-    Champion ID# <%= champ["championId"] %>
+    Champion: <%= champ.name %>
   </li>
   <% end %>
 </ul>
+
+<script>
+$( "button.update" ).on( "click", function(e) {
+  console.log("UPDATE CLICKED");
+  $( "p.status ").html("Updating...");
+  var summonerId = <%= params[:summoner_id] %>
+  var bookId = <%= @book.id %>
+  $.ajax({
+    type: "POST",
+    url: "/books/" + summonerId,
+    data: {
+      book_id: bookId
+    },
+    success: function( result ) {
+      console.log("Success!");
+      location.reload();
+    },
+    error: function( error ) {
+      $( "p.status ").html("An Error Occurred");
+      console.log("ERROR");
+    }
+  });
+});
+</script>

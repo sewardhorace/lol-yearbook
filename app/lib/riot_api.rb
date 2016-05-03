@@ -12,7 +12,18 @@ module RiotApi
     end
   end
 
-  def self.champions_mastery(summoner_id, region="NA1")
+  def self.summoner_by_id(summoner_id, region="na")
+    key = ENV['riot_api_key']
+    url = "https://na.api.pvp.net/api/lol/#{region}/v1.4/summoner/#{summoner_id}?api_key=#{key}"
+    data = self.request(url)
+    if data.has_key? summoner_id then
+      return data[summoner_id]
+    else
+      return false
+    end
+  end
+
+  def self.champion_mastery(summoner_id, region="NA1")
     key = ENV['riot_api_key']
     url = "https://na.api.pvp.net/championmastery/location/#{region}/player/#{summoner_id}/champions?api_key=#{key}"
     data = self.request(url) #array expected
@@ -28,6 +39,10 @@ module RiotApi
     key = ENV['riot_api_key']
     url = "https://global.api.pvp.net/api/lol/static-data/#{region}/v1.2/champion/#{id}?champData=image&api_key=#{key}"
     data = self.request(url)
+    puts '@@@@@@'
+    puts "CHAMPION REQUESTED:"
+    puts id
+    puts data
     if data.has_key? "id" then
       return data
     else
