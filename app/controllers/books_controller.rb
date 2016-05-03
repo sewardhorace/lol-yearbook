@@ -25,31 +25,55 @@ class BooksController < ApplicationController
   end
 
   def update
-    puts "UPDATE"
     summoner_id =  params[:summoner_id]
-    book_id = params[:book_id]
-    champions = RiotApi.champion_mastery(summoner_id)
-    champions.each do |c_mastery|
-      puts "C_MASTERY:"
-      puts c_mastery
-      champ = RiotApi.champion_by_id(c_mastery["championId"])
-      url = RiotApi.champion_image_url(champ["image"]["full"])
-      Champion.create(
-        champion_id: champ["id"],
-        book_id: book_id,
-        name: champ["name"],
-        title: champ["title"],
-        img_url: url,
-        highest_grade: c_mastery["highestGrade"],
-        mastery_points: c_mastery["championPoints"],
-        mastery_level: c_mastery["championLevel"]
-      )
-    end
+    book = update_book(summoner_id)
+    update_champions(book)
     render json: true
   end
 
   private
-    def search_params
-      params.require(:summoner_name)
+  def search_params
+    params.require(:summoner_name)
+  end
+
+  def update_book(summoner_id)
+    book = Book.find_by(summoner_id: summoner_id)
+    if summoner = RiotApi.summoner_by_id(summoner_id) then
+      book.update(summoner_name: summoner["name"])
+      #TODO this kind of sucks.. what if RiotApi call fails for some reason?
     end
+    return book
+  end
+
+  def create_champion(champion_id, book_id)
+    if champ = Champion.find_by(champion_id: champion_id, book_id: book_id) then
+      return champ
+    elsif data = RiotApi.champion_by_id(champion_id) then
+      url = RiotApi.champion_image_url(data["image"]["full"])
+      champ = Champion.new(
+        champion_id: data["id"],
+        book_id: book_id,
+        name: data["name"],
+        title: data["title"],
+        img_url: url
+      )
+      return champ
+    else
+      return false
+    end
+  end
+
+  def update_champions(book)
+    if champions = RiotApi.champion_mastery(book.summoner_id) then
+      champions.each do |mastery_data|
+        champ = create_champion(mastery_data["championId"], book.id)
+        champ.highest_grade = mastery_data["highestGrade"]
+        champ.mastery_points = mastery_data["championPoints"]
+        champ.mastery_level = mastery_data["championLevel"]
+        champ.save
+      end
+    else
+      return false
+    end
+  end
 end

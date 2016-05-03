@@ -12,31 +12,59 @@
   <div>
     <img src="<%= champ.img_url %>" alt="<%= champ.name %> <%= champ.champion_id %>">
     <p>Champion: <%= champ.name %></p>
+    <p>Mastery Points: <%= champ.mastery_points %></p>
   </div>
   </li>
   <% end %>
 </ul>
 
 <script>
+$(document).ready(function() {
+  var count = <%= @book.champions.count %>;
+  if (count === 0) {
+    console.log("NEW ENTRY");
+    $( "button.update").hide();
+    $( "p.status ").html("Generating Yearbook...");
+    updateBook({
+      success: function( result ) {
+        console.log("Success!");
+        location.reload();
+      },
+      error: function( error ) {
+        $( "p.status ").html("An Error Occurred");
+        console.log("ERROR");
+        $( "button.update").html("Try Again");
+        $( "button.update").show();
+      }
+    });
+  }
+});
+
 $( "button.update" ).on( "click", function(e) {
   console.log("UPDATE CLICKED");
+  $( "button.update").hide();
   $( "p.status ").html("Updating...");
-  var summonerId = <%= params[:summoner_id] %>
-  var bookId = <%= @book.id %>
-  $.ajax({
-    type: "POST",
-    url: "/books/" + summonerId,
-    data: {
-      book_id: bookId
-    },
+  updateBook({
     success: function( result ) {
       console.log("Success!");
       location.reload();
     },
     error: function( error ) {
       $( "p.status ").html("An Error Occurred");
+      $( "button.update").html("Try Again");
+      $( "button.update").show();
       console.log("ERROR");
     }
   });
 });
+
+var updateBook = function(callbacks){
+  var summonerId = <%= params[:summoner_id] %>;
+  $.ajax({
+    type: "POST",
+    url: "/books/" + summonerId,
+    success: callbacks.success,
+    error: callbacks.error
+  });
+}
 </script>

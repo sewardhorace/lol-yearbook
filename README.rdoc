@@ -3,6 +3,12 @@
 TODO:
 UI
 locally save static champion data to reduce api calls? (i.e. name, title, img_url )
+some images missing for newer champions
+twitter OAuth
+limit how often a profile can be updated (24 hours?)
+change route names to be user facing
+model validation
+better/more descriptive error handling
 
 
 This README would normally document whatever steps are necessary to get the
