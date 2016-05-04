@@ -50,6 +50,10 @@ class BooksController < ApplicationController
     end
   end
 
+  def delete_comment
+    
+  end
+
   private
   def search_params
     params.require(:summoner_name)

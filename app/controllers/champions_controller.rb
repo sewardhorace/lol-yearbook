@@ -20,6 +20,10 @@ class ChampionsController < ApplicationController
     end
   end
 
+  def delete_comment
+
+  end
+
   private
   def comment_params
     params.require(:comment).permit(:text, :id)
