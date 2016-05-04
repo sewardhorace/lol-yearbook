@@ -4,7 +4,7 @@
 <button class="update">Update</button>
 </div>
 <ul>
-  <% @book.champions.each do |champ| %>
+  <% @book.champions.order(mastery_points: :desc).each do |champ| %>
   <li>
   <div>
     <img src="<%= champ.static_data.profile_url %>" alt="<%= champ.static_data.name %> <%= champ.champion_id %>">
@@ -15,9 +15,24 @@
   <% end %>
 </ul>
 <h3>Comments:</h3>
-
-<ul>
-  <% @book.comments.each do |c| %>
+<% if current_user %>
+<div>
+  <form>
+  <fieldset class="form-group">
+    <label for="commentText">New Comment:</label>
+    <textarea name="commentText" class="form-control" rows="3"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="authorInput">- <%= current_user.name %></label>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<% else %>
+<p>Log in to comment</p>
+<% end %>
+<ul class="comments-list">
+  <% @book.comments.order(created_at: :desc).each do |c| %>
   <li>
     <%= c.text %>
     <span><%= image_tag c.author.img_url, alt: c.author.name %></span>
@@ -29,6 +44,19 @@
 $(document).ready(function() {
   var count = <%= @book.champions.count %>;
   if (count === 0) {
+    generateNewBook();
+  }
+
+  var updateBook = function(callbacks){
+    $.ajax({
+      type: "POST",
+      url: "<%= update_book_path(params[:summoner_id])%>",
+      success: callbacks.success,
+      error: callbacks.error
+    });
+  }
+
+  var generateNewBook = function() {
     console.log("NEW ENTRY");
     $( "button.update").hide();
     $( "p.status ").html("Generating Yearbook...");
@@ -44,34 +72,76 @@ $(document).ready(function() {
         $( "button.update").show();
       }
     });
-  }
-});
+  };
 
-$( "button.update" ).on( "click", function(e) {
-  console.log("UPDATE CLICKED");
-  $( "button.update").hide();
-  $( "p.status ").html("Updating...");
-  updateBook({
-    success: function( result ) {
-      console.log("Success!");
-      location.reload();
-    },
-    error: function( error ) {
-      $( "p.status ").html("An Error Occurred");
-      $( "button.update").html("Try Again");
-      $( "button.update").show();
-      console.log("ERROR");
+  $( "button.update" ).on( "click", function(e) {
+    console.log("UPDATE CLICKED");
+    $( "button.update").hide();
+    $( "p.status ").html("Updating...");
+    updateBook({
+      success: function( result ) {
+        console.log("SUCCESS");
+        console.log(result);
+        location.reload();
+      },
+      error: function( error ) {
+        $( "p.status ").html("An Error Occurred");
+        $( "button.update").html("Try Again");
+        $( "button.update").show();
+        console.log("ERROR");
+        console.log(error);
+      }
+    });
+  });
+
+  $( "form").submit(function(e) {
+    console.log("Submit button clicked");
+    e.preventDefault();
+    var text = $('textarea[name=commentText]').val();
+    if (!text) {
+      console.log("No content");
+      return;
     }
+    var comment = {
+      'text': text,
+      'book_id': <%= @book.id %>
+    };
+    var data = {
+      "comment": comment
+    };
+    $.ajax({
+      type: "POST",
+      url: "<%= new_book_comment_path(params[:summoner_id])%>",
+      data: data,
+      dataType: 'json',
+      encode: true,
+      success: function( result ) {
+        console.log("SUCCESS");
+        clearForm();
+        appendComment(result);
+      },
+      error: function( error ) {
+        console.log("ERROR");
+        var message = error.responseText;
+        console.log(message);
+      }
+    });
   });
-});
 
-var updateBook = function(callbacks){
-  var summonerId = <%= params[:summoner_id] %>;
-  $.ajax({
-    type: "POST",
-    url: "/summoner/" + summonerId,
-    success: callbacks.success,
-    error: callbacks.error
-  });
-}
+  var clearForm = function(){
+    $('textarea[name=commentText]').val("");
+  };
+
+  var appendComment = function(comment){
+    console.log("appending comment");
+    var text = comment.text;
+    $(".comments-list").prepend("<li>"+ text + "</li>");
+  };
+
+  // $("#new_article").on("ajax:success", (e, data, status, xhr) ->
+  //   $("#new_article").append xhr.responseText
+  // ).on "ajax:error", (e, xhr, status, error) ->
+  //   $("#new_article").append "<p>ERROR</p>"
+
+});
 </script>

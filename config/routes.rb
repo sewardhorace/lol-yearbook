@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   get '/search', to: 'books#search'
   get '/summoner/:summoner_id', to: 'books#show', as: 'book'
-  post '/summoner/:summoner_id', to: 'books#update'
+  post '/summoner/:summoner_id', to: 'books#update', as: 'update_book'
+  post '/summoner/:summoner_id/comment', to: 'books#new_comment', as: 'new_book_comment'
 
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

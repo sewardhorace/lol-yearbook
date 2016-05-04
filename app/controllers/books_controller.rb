@@ -30,11 +30,32 @@ class BooksController < ApplicationController
     book.update_summoner(RiotApi.summoner_by_id(summoner_id))
     book.update_champions(RiotApi.champion_mastery(summoner_id))
     #TODO ^needs error handling.. what if RiotApi call fails for some reason?
-    render json: true
+    # redirect_to book_path(summoner_id)
+    #^ reloads page in ajax call
+    render json: true, status: :ok
+  end
+
+  def new_comment
+    comment = BookComment.create(
+      book_id: comment_params[:book_id],
+      text: comment_params[:text],
+      user_id: current_user.id
+    )
+    if comment.valid? then
+      render json: comment, status: :created
+    elsif !current_user then
+      render text: "You must log in to comment", status: :unauthorized
+    else
+      render text: "Comment could not be created", status: :unprocessable_entity
+    end
   end
 
   private
   def search_params
     params.require(:summoner_name)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:text, :book_id)
   end
 end
