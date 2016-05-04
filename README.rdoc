@@ -3,12 +3,17 @@
 TODO:
 UI
 locally save static champion data to reduce api calls? (i.e. name, title, img_url )
+- currently, static data does not update.
+create task to update static champion data
+system for updating riot api versions
 some images missing for newer champions
 twitter OAuth
 limit how often a profile can be updated (24 hours?)
 change route names to be user facing
 model validation
 better/more descriptive error handling
+allow selection of region (probably should save region to book table)
+
 
 
 This README would normally document whatever steps are necessary to get the
