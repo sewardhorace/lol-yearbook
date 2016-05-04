@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/summoner/:summoner_id', to: 'books#update', as: 'update_book'
   post '/summoner/:summoner_id/comment', to: 'books#new_comment', as: 'new_book_comment'
 
+  get '/summoner/:summoner_id/champion/:champion_id', to: 'champions#show', as: 'champion'
+
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 

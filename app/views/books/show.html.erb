@@ -8,7 +8,9 @@
   <li>
   <div>
     <img src="<%= champ.static_data.profile_url %>" alt="<%= champ.static_data.name %> <%= champ.champion_id %>">
-    <p>Champion: <%= champ.static_data.name %></p>
+    <p>Champion:
+      <%= link_to champ.static_data.name, champion_path(@book.summoner_id, champ.champion_id) %>
+    </p>
     <p>Mastery Points: <%= champ.mastery_points %></p>
   </div>
   </li>
@@ -42,11 +44,6 @@
 
 <script>
 $(document).ready(function() {
-  var count = <%= @book.champions.count %>;
-  if (count === 0) {
-    generateNewBook();
-  }
-
   var updateBook = function(callbacks){
     $.ajax({
       type: "POST",
@@ -138,10 +135,9 @@ $(document).ready(function() {
     $(".comments-list").prepend("<li>"+ text + "</li>");
   };
 
-  // $("#new_article").on("ajax:success", (e, data, status, xhr) ->
-  //   $("#new_article").append xhr.responseText
-  // ).on "ajax:error", (e, xhr, status, error) ->
-  //   $("#new_article").append "<p>ERROR</p>"
-
+  var count = <%= @book.champions.count %>;
+  if (count === 0) {
+    generateNewBook();
+  }
 });
 </script>
