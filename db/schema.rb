@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160430215857) do
+ActiveRecord::Schema.define(version: 20160504014331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,9 +28,6 @@ ActiveRecord::Schema.define(version: 20160430215857) do
     t.integer  "book_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
-    t.string   "name"
-    t.string   "title"
-    t.string   "img_url"
     t.string   "highest_grade"
     t.integer  "mastery_points"
     t.integer  "mastery_level"
@@ -50,5 +47,16 @@ ActiveRecord::Schema.define(version: 20160430215857) do
 
   add_index "comments", ["book_id"], name: "index_comments_on_book_id", using: :btree
   add_index "comments", ["champion_id"], name: "index_comments_on_champion_id", using: :btree
+
+  create_table "static_champions", force: :cascade do |t|
+    t.integer  "champion_id"
+    t.string   "name"
+    t.string   "title"
+    t.string   "img_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "static_champions", ["champion_id"], name: "index_static_champions_on_champion_id", using: :btree
 
 end

@@ -42,16 +42,18 @@ class BooksController < ApplicationController
   def create_champion(champion_id, book_id)
     if champ = Champion.find_by(champion_id: champion_id, book_id: book_id) then
       return champ
-    elsif data = RiotApi.champion_by_id(champion_id) then
-      url = RiotApi.champion_image_url(data["image"]["full"])
-      champ = Champion.new(
-        champion_id: data["id"],
-        book_id: book_id,
-        name: data["name"],
-        title: data["title"],
-        img_url: url
-      )
+    elsif champ = Champion.create(champion_id: champion_id, book_id: book_id) then
       return champ
+    # elsif data = RiotApi.champion_by_id(champion_id) then
+    #   url = RiotApi.champion_image_url(data["image"]["full"])
+    #   champ = Champion.new(
+    #     champion_id: data["id"],
+    #     book_id: book_id,
+    #     name: data["name"],
+    #     title: data["title"],
+    #     img_url: url
+    #   )
+    #   return champ
     else
       return false
     end

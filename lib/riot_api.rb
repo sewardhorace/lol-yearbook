@@ -1,7 +1,4 @@
 module RiotApi
-
-  key = ENV['riot_api_key']
-
   def self.summoner_by_name(name, region="na")
     key = ENV['riot_api_key']
     url_name = URI.escape(name)
@@ -39,6 +36,7 @@ module RiotApi
   end
 
   def self.all_champions(region="na")
+    key = ENV['riot_api_key']
     url = "https://global.api.pvp.net/api/lol/static-data/#{region}/v1.2/champion?champData=image&api_key=#{key}"
     data = self.request(url)
     if data.has_key? "data" then
