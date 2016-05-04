@@ -57,7 +57,7 @@ module RiotApi
     end
   end
 
-  def self.champion_image_url(img_name, version="5.2.1")
+  def self.champion_image_url(img_name, version="6.9.1")
     url = "http://ddragon.leagueoflegends.com/cdn/#{version}/img/champion/#{img_name}"
   end
 
