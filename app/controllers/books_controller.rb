@@ -35,31 +35,8 @@ class BooksController < ApplicationController
     render json: true, status: :ok
   end
 
-  def new_comment
-    comment = BookComment.create(
-      book_id: comment_params[:id],
-      text: comment_params[:text],
-      user_id: current_user.id
-    )
-    if comment.valid? then
-      render json: comment, status: :created
-    elsif !current_user then
-      render text: "You must log in to comment", status: :unauthorized
-    else
-      render text: "Comment could not be created", status: :unprocessable_entity
-    end
-  end
-
-  def delete_comment
-    
-  end
-
   private
   def search_params
     params.require(:summoner_name)
-  end
-
-  def comment_params
-    params.require(:comment).permit(:text, :id)
   end
 end

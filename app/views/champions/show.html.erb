@@ -48,7 +48,7 @@ $(document).ready(function() {
     };
     $.ajax({
       type: "POST",
-      url: "<%= new_champion_comment_path(params[:summoner_id], params[:champion_id])%>",
+      url: "<%= new_champion_comment_path %>",
       data: data,
       dataType: 'json',
       encode: true,

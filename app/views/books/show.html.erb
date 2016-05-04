@@ -108,7 +108,7 @@ $(document).ready(function() {
     };
     $.ajax({
       type: "POST",
-      url: "<%= new_book_comment_path(params[:summoner_id])%>",
+      url: "<%= new_book_comment_path %>",
       data: data,
       dataType: 'json',
       encode: true,
