@@ -10,7 +10,7 @@
   <% @book.champions.each do |champ| %>
   <li>
   <div>
-    <img src="<%= champ.static_data.img_url %>" alt="<%= champ.static_data.name %> <%= champ.champion_id %>">
+    <img src="<%= champ.static_data.profile_url %>" alt="<%= champ.static_data.name %> <%= champ.champion_id %>">
     <p>Champion: <%= champ.static_data.name %></p>
     <p>Mastery Points: <%= champ.mastery_points %></p>
   </div>

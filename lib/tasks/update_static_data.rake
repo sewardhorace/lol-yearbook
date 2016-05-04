@@ -8,14 +8,17 @@ task :update_static_data => :environment do
   puts "Updating local database..."
   champions.each do |data|
     champ_data = data.last
-    puts "Fetching img URL..."
-    url = RiotApi.champion_image_url(champ_data["image"]["full"])
+    puts "Fetching img URLs..."
+    img_key = champ_data["key"]
+    profile_url = RiotApi.champion_profile_img_url(img_key)
+    splash_url = RiotApi.champion_splash_img_url(img_key)
     if champ = StaticChampion.find_by(champion_id: champ_data["id"])
       puts "Updating local record:"
       champ.update(
         name: champ_data["name"],
         title: champ_data["title"],
-        img_url: url
+        profile_url: profile_url,
+        splash_url: splash_url
       )
     else
       puts "Creating new local record:"
@@ -23,7 +26,8 @@ task :update_static_data => :environment do
         champion_id: champ_data["id"],
         name: champ_data["name"],
         title: champ_data["title"],
-        img_url: url
+        profile_url: profile_url,
+        splash_url: splash_url
       )
     end
     puts champ

@@ -57,8 +57,12 @@ module RiotApi
     end
   end
 
-  def self.champion_image_url(img_name, version="6.9.1")
-    url = "http://ddragon.leagueoflegends.com/cdn/#{version}/img/champion/#{img_name}"
+  def self.champion_profile_img_url(img_name, version="6.9.1")
+    url = "http://ddragon.leagueoflegends.com/cdn/#{version}/img/champion/#{img_name}.png"
+  end
+
+  def self.champion_splash_img_url(img_name)
+    url = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/#{img_name}_0.jpg"
   end
 
   private
