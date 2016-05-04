@@ -26,7 +26,9 @@ class BooksController < ApplicationController
 
   def update
     summoner_id =  params[:summoner_id]
-    book = update_book(summoner_id)
+    book = Book.find_by(summoner_id: summoner_id)
+    book.update_summoner(RiotApi.summoner_by_id(summoner_id))
+    #TODO ^this kind of sucks.. what if RiotApi call fails for some reason?
     update_champions(book)
     render json: true
   end
@@ -36,15 +38,7 @@ class BooksController < ApplicationController
     params.require(:summoner_name)
   end
 
-  def update_book(summoner_id)
-    book = Book.find_by(summoner_id: summoner_id)
-    if summoner = RiotApi.summoner_by_id(summoner_id) then
-      book.update(summoner_name: summoner["name"])
-      #TODO this kind of sucks.. what if RiotApi call fails for some reason?
-    end
-    return book
-  end
-
+  #TODO refactor into class method
   def create_champion(champion_id, book_id)
     if champ = Champion.find_by(champion_id: champion_id, book_id: book_id) then
       return champ
@@ -63,6 +57,7 @@ class BooksController < ApplicationController
     end
   end
 
+  #TODO refactor into class method
   def update_champions(book)
     if champions = RiotApi.champion_mastery(book.summoner_id) then
       champions.each do |mastery_data|
