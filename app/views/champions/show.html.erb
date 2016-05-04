@@ -3,3 +3,76 @@
   <img src="<%= @champion.static_data.splash_url %>" alt="<%= @champion.static_data.name %> <%= @champion.champion_id %>">
   <p>Mastery Points: <%= @champion.mastery_points %></p>
 </div>
+<h3>Comments:</h3>
+<% if current_user %>
+<div>
+  <form>
+  <fieldset class="form-group">
+    <label for="commentText">New Comment:</label>
+    <textarea name="commentText" class="form-control" rows="3"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="authorInput">- <%= current_user.name %></label>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<% else %>
+<p>Log in to comment</p>
+<% end %>
+<ul class="comments-list">
+  <% @champion.comments.order(created_at: :desc).each do |c| %>
+  <li>
+    <%= c.text %>
+    <span><%= image_tag c.author.img_url, alt: c.author.name %></span>
+  </li>
+  <% end %>
+</ul>
+
+<script>
+$(document).ready(function() {
+  $( "form").submit(function(e) {
+    console.log("Submit button clicked");
+    e.preventDefault();
+    var text = $('textarea[name=commentText]').val();
+    if (!text) {
+      console.log("No content");
+      return;
+    }
+    var comment = {
+      'text': text,
+      'id': <%= @champion.id %>
+    };
+    var data = {
+      "comment": comment
+    };
+    $.ajax({
+      type: "POST",
+      url: "<%= new_champion_comment_path(params[:summoner_id], params[:champion_id])%>",
+      data: data,
+      dataType: 'json',
+      encode: true,
+      success: function( result ) {
+        console.log("SUCCESS");
+        clearForm();
+        appendComment(result);
+      },
+      error: function( error ) {
+        console.log("ERROR");
+        var message = error.responseText;
+        console.log(message);
+      }
+    });
+  });
+
+  var clearForm = function(){
+    $('textarea[name=commentText]').val("");
+  };
+
+  var appendComment = function(comment){
+    console.log("appending comment");
+    var text = comment.text;
+    $(".comments-list").prepend("<li>"+ text + "</li>");
+  };
+});
+</script>

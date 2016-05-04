@@ -37,7 +37,7 @@ class BooksController < ApplicationController
 
   def new_comment
     comment = BookComment.create(
-      book_id: comment_params[:book_id],
+      book_id: comment_params[:id],
       text: comment_params[:text],
       user_id: current_user.id
     )
@@ -56,6 +56,6 @@ class BooksController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:text, :book_id)
+    params.require(:comment).permit(:text, :id)
   end
 end
