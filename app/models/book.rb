@@ -13,21 +13,15 @@ class Book < ActiveRecord::Base
     #TODO activerecord rollback catch
     champion_data.each do |mastery_data|
       champion_id = mastery_data["championId"]
-      if champ = Champion.find_by(champion_id: champion_id, book_id: self.id) then
-        champ.update(
-          highest_grade: mastery_data["highestGrade"],
-          mastery_points: mastery_data["championPoints"],
-          mastery_level: mastery_data["championLevel"]
-        )
-      else
-        Champion.create(
-          book_id: self.id,
-          champion_id: champion_id,
-          highest_grade: mastery_data["highestGrade"],
-          mastery_points: mastery_data["championPoints"],
-          mastery_level: mastery_data["championLevel"]
-        )
-      end
+      champ = Champion.find_or_create_by(
+        champion_id: champion_id,
+        book_id: self.id
+      )
+      champ.update(
+        highest_grade: mastery_data["highestGrade"],
+        mastery_points: mastery_data["championPoints"],
+        mastery_level: mastery_data["championLevel"]
+      )
     end
   end
 end

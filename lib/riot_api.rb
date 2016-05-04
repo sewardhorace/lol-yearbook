@@ -1,6 +1,6 @@
 module RiotApi
   def self.summoner_by_name(name, region="na")
-    key = ENV['riot_api_key']
+    key = ENV['RIOT_KEY']
     url_name = URI.escape(name)
     url = "https://na.api.pvp.net/api/lol/#{region}/v1.4/summoner/by-name/#{url_name}?api_key=#{key}"
     data = self.request(url)
@@ -13,7 +13,7 @@ module RiotApi
   end
 
   def self.summoner_by_id(summoner_id, region="na")
-    key = ENV['riot_api_key']
+    key = ENV['RIOT_KEY']
     url = "https://na.api.pvp.net/api/lol/#{region}/v1.4/summoner/#{summoner_id}?api_key=#{key}"
     data = self.request(url)
     if data.has_key? summoner_id then
@@ -24,7 +24,7 @@ module RiotApi
   end
 
   def self.champion_mastery(summoner_id, region="NA1")
-    key = ENV['riot_api_key']
+    key = ENV['RIOT_KEY']
     url = "https://na.api.pvp.net/championmastery/location/#{region}/player/#{summoner_id}/champions?api_key=#{key}"
     data = self.request(url) #array expected
     example = data.first
@@ -36,7 +36,7 @@ module RiotApi
   end
 
   def self.all_champions(region="na")
-    key = ENV['riot_api_key']
+    key = ENV['RIOT_KEY']
     url = "https://global.api.pvp.net/api/lol/static-data/#{region}/v1.2/champion?champData=image&api_key=#{key}"
     data = self.request(url)
     if data.has_key? "data" then
@@ -47,7 +47,7 @@ module RiotApi
   end
 
   def self.champion_by_id(id, region="na")
-    key = ENV['riot_api_key']
+    key = ENV['RIOT_KEY']
     url = "https://global.api.pvp.net/api/lol/static-data/#{region}/v1.2/champion/#{id}?champData=image&api_key=#{key}"
     data = self.request(url)
     if data.has_key? "id" then
