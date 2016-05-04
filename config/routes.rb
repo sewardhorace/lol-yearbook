@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/search', to: 'books#search'
-  get '/books/:summoner_id', to: 'books#show', as: 'book'
-  post '/books/:summoner_id', to: 'books#update'
+  get '/summoner/:summoner_id', to: 'books#show', as: 'book'
+  post '/summoner/:summoner_id', to: 'books#update'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

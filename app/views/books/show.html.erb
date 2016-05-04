@@ -62,7 +62,7 @@ var updateBook = function(callbacks){
   var summonerId = <%= params[:summoner_id] %>;
   $.ajax({
     type: "POST",
-    url: "/books/" + summonerId,
+    url: "/summoner/" + summonerId,
     success: callbacks.success,
     error: callbacks.error
   });

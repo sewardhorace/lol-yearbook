@@ -2,11 +2,7 @@
 
 TODO:
 UI
-locally save static champion data to reduce api calls? (i.e. name, title, img_url )
-- currently, static data does not update.
-create task to update static champion data
-system for updating riot api versions
-some images missing for newer champions
+system/task for updating riot api versions
 twitter OAuth
 limit how often a profile can be updated (24 hours?)
 change route names to be user facing
