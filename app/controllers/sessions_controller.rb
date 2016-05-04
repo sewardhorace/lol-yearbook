@@ -3,10 +3,6 @@ class SessionsController < ApplicationController
     begin
       @user = User.from_omniauth(request.env['omniauth.auth'])
       session[:user_id] = @user.id
-      puts '%%%%%%%'
-      puts request
-      puts request.original_url
-      session[:return_to] ||= request.referer
       flash[:success] = "Welcome, #{@user.name}!"
     rescue
       flash[:warning] = "There was an error while trying to authenticate you..."

@@ -3,9 +3,6 @@
 <p class="status"></p>
 <button class="update">Update</button>
 </div>
-<p>
-  Here's where stuff will go
-</p>
 <ul>
   <% @book.champions.each do |champ| %>
   <li>
@@ -14,6 +11,16 @@
     <p>Champion: <%= champ.static_data.name %></p>
     <p>Mastery Points: <%= champ.mastery_points %></p>
   </div>
+  </li>
+  <% end %>
+</ul>
+<h3>Comments:</h3>
+
+<ul>
+  <% @book.comments.each do |c| %>
+  <li>
+    <%= c.text %>
+    <span><%= image_tag c.author.img_url, alt: c.author.name %></span>
   </li>
   <% end %>
 </ul>
