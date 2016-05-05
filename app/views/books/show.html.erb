@@ -19,7 +19,7 @@
 <h3>Comments:</h3>
 <% if current_user %>
 <div>
-  <form>
+  <form class="comment-form">
   <fieldset class="form-group">
     <label for="commentText">New Comment:</label>
     <textarea name="commentText" class="form-control" rows="3"></textarea>
@@ -96,7 +96,7 @@ $(document).ready(function() {
     });
   });
 
-  $( "form").submit(function(e) {
+  $( "form.comment-form").submit(function(e) {
     console.log("Submit button clicked");
     e.preventDefault();
     var text = $('textarea[name=commentText]').val();

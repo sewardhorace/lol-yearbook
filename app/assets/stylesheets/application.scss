@@ -10,6 +10,23 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+ @import "bootstrap-sprockets";
+ @import "bootstrap";
+
+@media (max-width: 767px) {
+  .navbar-form{
+    margin-top:0;
+  }
+}
+
+.navbar-text {
+  float: left;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.twitter-pic{
+ border-radius: 50%;
+}
