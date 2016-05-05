@@ -28,11 +28,15 @@ class BooksController < ApplicationController
     summoner_id =  params[:summoner_id]
     book = Book.find_by(summoner_id: summoner_id)
     book.update_summoner(RiotApi.summoner_by_id(summoner_id))
-    book.update_champions(RiotApi.champion_mastery(summoner_id))
-    #TODO ^needs error handling.. what if RiotApi call fails for some reason?
-    # redirect_to book_path(summoner_id)
-    #^ reloads page in ajax call
-    render json: true, status: :ok
+    if book.update_champions(RiotApi.champion_mastery(summoner_id)) then
+      flash[:success] = 'Yearbook now up to date.'
+      render json: true, status: :ok
+    else
+      message = "An error occurred. Yearbook not updated"
+      flash[:warning] = message
+      render text: message, status: :internal_server_error
+    end
+    #TODO ^more descriptive error handling..
   end
 
   private
