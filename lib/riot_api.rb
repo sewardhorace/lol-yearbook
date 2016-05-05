@@ -62,7 +62,7 @@ module RiotApi
   end
 
   def self.champion_splash_img_url(img_name)
-    url = "http://ddragon.leagueoflegends.com/cdn/img/champion/splash/#{img_name}_0.jpg"
+    url = "http://ddragon.leagueoflegends.com/cdn/img/champion/loading/#{img_name}_0.jpg"
   end
 
   private
