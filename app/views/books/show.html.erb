@@ -4,19 +4,28 @@
     <button type="button" class="btn btn-info btn-sm update">Update</button>
   </div>
 </div>
-<ul>
+<div class="row">
   <% @book.champions.order(mastery_points: :desc).each do |champ| %>
-  <li>
-  <div>
-    <img src="<%= champ.static_data.profile_url %>" alt="<%= champ.static_data.name %> <%= champ.champion_id %>">
-    <p>Champion:
-      <%= link_to champ.static_data.name, champion_path(@book.summoner_id, champ.champion_id) %>
-    </p>
-    <p>Mastery Points: <%= champ.mastery_points %></p>
+  <div class="col-sm-4 col-md-3">
+    <div class="thumb">
+      <a href="<%= champion_path(@book.summoner_id, champ.champion_id) %>">
+        <img
+          src="<%= champ.static_data.profile_url %>"
+          alt="<%= champ.static_data.name %> <%= champ.champion_id %>"
+        >
+      </a>
+      <div class="info">
+        <h4>
+          <a href="<%= champion_path(@book.summoner_id, champ.champion_id) %>">
+            <%= champ.static_data.name %>
+          </a>
+        </h4>
+        <p>Mastery Points: <%= champ.mastery_points %></p>
+      </div>
+    </div>
   </div>
-  </li>
   <% end %>
-</ul>
+</div>
 <h3>Comments:</h3>
 <% if current_user %>
 <div>

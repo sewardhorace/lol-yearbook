@@ -5,11 +5,11 @@
 h3.title{
   display: inline-block;
   margin-right: 6px;
+  margin-bottom: 12px;
 }
 button.update{
   vertical-align:super;
 }
-
 .glyphicon.spinning {
   padding: 0 12px;
   animation: spin 1s infinite linear;
@@ -22,4 +22,22 @@ button.update{
 @-webkit-keyframes spin2 {
   from { -webkit-transform: rotate(0deg); }
   to { -webkit-transform: rotate(360deg); }
+}
+
+.thumb{
+  padding: 8px 0;
+  img{
+    display: block;
+    margin:auto;
+  }
+  .info{
+    h4{
+      text-align: center;
+      margin-top: 6px;
+      margin-bottom: 0;
+    }
+    p{
+      text-align: center;
+    }
+  }
 }
