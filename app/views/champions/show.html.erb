@@ -1,16 +1,35 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <h3><%= @champion.book.summoner_name %>'s <%= @champion.static_data.name  %></h2>
-    <div>
-      <img
-        src="<%= @champion.static_data.splash_url %>"
-        alt="<%= @champion.static_data.name %> <%= @champion.champion_id %>"
-      >
-      <p>Chest Earned?: <%= @champion.chest_earned %></p>
+    <h3>
+      <a href="<%= book_path(@champion.book.summoner_id) %>">
+        <%= @champion.book.summoner_name %></a>'s <%= @champion.static_data.name  %>
+    </h3>
+    <p class="title">"<%= @champion.static_data.title %>"</p>
+  </div>
+  <div class="hidden-xs col-sm-2 col-md-3">&nbsp;</div>
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <img
+      class="portrait"
+      src="<%= @champion.static_data.splash_url %>"
+      alt="<%= @champion.static_data.name %> <%= @champion.champion_id %>"
+    >
+  </div>
+  <div class="col-xs-12 col-sm-4 col-md-3">
+    <div class="info">
+      <p class="school-level"><%= @champion.school_level %><span class="pull-right"><%= @champion.mastery_title %></span></p>
+      <% if @champion.chest_earned %>
+      <p class="honors"><span class="glyphicon glyphicon-star"></span> Honor Role*</p>
+      <% end %>
+      <p>Highest Grade Earned: <%= @champion.highest_grade %></p>
       <p>Mastery Points: <%= @champion.mastery_points %></p>
     </div>
   </div>
+  <% if @champion.chest_earned %>
+  <div class="col-xs-12">
+    <div class="asterisk">*Chest Earned</div>
+  </div>
+  <% end %>
 </div>
 
 <%= render partial: "comments/comments", locals: {comments: @champion.comments } %>

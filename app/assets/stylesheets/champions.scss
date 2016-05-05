@@ -1,3 +1,36 @@
 // Place all the styles related to the champions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+h3{
+  margin-top: 14px;
+  margin-bottom: 10px;
+}
+.title{
+  font-size: 1.25em;
+  font-weight: bold;
+  text-align: center;
+}
+
+img.portrait {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.info{
+  font-size: 1.25em;
+  .school-level{
+    font-weight: bold;
+    border-bottom: 2px solid black;
+    margin-bottom: 8px;
+    span{
+      font-weight: normal;
+    }
+  }
+  .honors{
+    color: gold;
+  }
+}
+
+.asterisk{
+  text-align: center;
+}
