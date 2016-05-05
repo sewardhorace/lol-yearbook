@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h3>Notes:</h3>
+    <% if current_user %>
+      <%= render partial: "comments/form" %>
+    <% else %>
+      <p>Log in to comment</p>
+    <% end %>
+
+    <%= render partial: "comments/list", locals: {comments: comments}%>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div>
+  <form class="comment-form">
+  <fieldset class="form-group">
+    <label for="commentText">Leave a Note:</label>
+    <textarea name="commentText" class="form-control" rows="3"></textarea>
+  </fieldset>
+  <fieldset class="form-group">
+    <label for="authorInput">- <%= current_user.name %></label>
+  </fieldset>
+  <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

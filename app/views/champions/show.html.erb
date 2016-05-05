@@ -1,39 +1,19 @@
-<h2><%= @champion.static_data.name  %></h2>
-<div>
-  <img src="<%= @champion.static_data.splash_url %>" alt="<%= @champion.static_data.name %> <%= @champion.champion_id %>">
-  <p>Chest Earned?: <%= @champion.chest_earned %></p>
-  <p>Mastery Points: <%= @champion.mastery_points %></p>
+
+<div class="row">
+  <div class="col-xs-12">
+    <h3><%= @champion.book.summoner_name %>'s <%= @champion.static_data.name  %></h2>
+    <div>
+      <img
+        src="<%= @champion.static_data.splash_url %>"
+        alt="<%= @champion.static_data.name %> <%= @champion.champion_id %>"
+      >
+      <p>Chest Earned?: <%= @champion.chest_earned %></p>
+      <p>Mastery Points: <%= @champion.mastery_points %></p>
+    </div>
+  </div>
 </div>
-<h3>Comments:</h3>
-<% if current_user %>
-<div>
-  <form class="comment-form">
-  <fieldset class="form-group">
-    <label for="commentText">New Comment:</label>
-    <textarea name="commentText" class="form-control" rows="3"></textarea>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="authorInput">- <%= current_user.name %></label>
-  </fieldset>
-  <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
-</div>
-<% else %>
-<p>Log in to comment</p>
-<% end %>
-<ul class="comments-list">
-  <% @champion.comments.order(created_at: :desc).each do |c| %>
-  <li id="comment-<%= c.id %>">
-    <%= c.text %>
-    <span><%= image_tag c.author.img_url, alt: c.author.name %></span>
-    <% if c.author == current_user then %>
-    <span>
-      <%= link_to "Delete", delete_comment_path(c.id), method: :delete, remote: true %>
-    </span>
-    <% end %>
-  </li>
-  <% end %>
-</ul>
+
+<%= render partial: "comments/comments", locals: {comments: @champion.comments } %>
 
 <script>
 $(document).ready(function() {
