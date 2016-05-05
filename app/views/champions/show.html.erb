@@ -1,6 +1,7 @@
 <h2><%= @champion.static_data.name  %></h2>
 <div>
   <img src="<%= @champion.static_data.splash_url %>" alt="<%= @champion.static_data.name %> <%= @champion.champion_id %>">
+  <p>Chest Earned?: <%= @champion.chest_earned %></p>
   <p>Mastery Points: <%= @champion.mastery_points %></p>
 </div>
 <h3>Comments:</h3>

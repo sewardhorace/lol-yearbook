@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504180424) do
+ActiveRecord::Schema.define(version: 20160505161026) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,13 +31,13 @@ ActiveRecord::Schema.define(version: 20160504180424) do
     t.string   "highest_grade"
     t.integer  "mastery_points"
     t.integer  "mastery_level"
+    t.boolean  "chest_earned"
   end
 
   add_index "champions", ["book_id"], name: "index_champions_on_book_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "text"
-    t.string   "signature"
     t.string   "type"
     t.integer  "book_id"
     t.integer  "champion_id"

@@ -20,7 +20,8 @@ class Book < ActiveRecord::Base
       champ.update(
         highest_grade: mastery_data["highestGrade"],
         mastery_points: mastery_data["championPoints"],
-        mastery_level: mastery_data["championLevel"]
+        mastery_level: mastery_data["championLevel"],
+        chest_earned: mastery_data["chestGranted"]
       )
     end
   end

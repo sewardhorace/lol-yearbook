@@ -4,7 +4,8 @@ class CreateStaticChampions < ActiveRecord::Migration
       t.integer :champion_id, index: true #champion id from riot api
       t.string :name
       t.string :title
-      t.string :img_url
+      t.string :profile_url
+      t.string :splash_url
 
       t.timestamps null: false
     end
