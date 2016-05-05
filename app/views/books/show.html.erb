@@ -1,7 +1,8 @@
-<h2><%= @book.summoner_name  %>'s Yearbook</h2>
-<div>
-<p class="status"></p>
-<button class="update">Update</button>
+<div class="row">
+  <div class="col-xs-12">
+    <h3 class="title"><%= @book.summoner_name  %>'s Yearbook</h3>
+    <button type="button" class="btn btn-info btn-sm update">Update</button>
+  </div>
 </div>
 <ul>
   <% @book.champions.order(mastery_points: :desc).each do |champ| %>
@@ -78,8 +79,8 @@ $(document).ready(function() {
 
   $( "button.update" ).on( "click", function(e) {
     console.log("UPDATE CLICKED");
-    $( "button.update").hide();
-    $( "p.status ").html("Updating...");
+    $( "button.update").addClass("disabled");
+    $( "button.update").html("<span class='glyphicon glyphicon-refresh spinning'></span");
     updateBook({
       success: function( result ) {
         console.log("SUCCESS");
@@ -87,11 +88,9 @@ $(document).ready(function() {
         location.reload();
       },
       error: function( error ) {
-        $( "p.status ").html("An Error Occurred");
-        $( "button.update").html("Try Again");
-        $( "button.update").show();
         console.log("ERROR");
         console.log(error);
+        location.reload();
       }
     });
   });
