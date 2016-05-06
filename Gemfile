@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'will_paginate'
 gem 'bootstrap-sass'
 gem 'omniauth-twitter'
 gem 'figaro'

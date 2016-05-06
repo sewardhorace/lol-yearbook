@@ -2,14 +2,21 @@
 
 TODO:
 UI
-- search bar in nav
 - tabs for each "class" (i.e. Seniors, Freshmen)
-delete/edit comments
+- icon for tab in browser
+- crest for welcome page
+- silly yearbook backgrounds (leathery front cover, portrait backdropish other pages)
+edit comments?
 system/task for updating riot api versions
 limit how often a profile can be updated (24 hours?)
 model validation
 better/more descriptive error handling
 allow selection of region (probably should save region to book table)
+refactor javascripts
+add champion quotes
+finish the readme
+push to heroku
+
 
 
 

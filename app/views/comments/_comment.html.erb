@@ -8,11 +8,14 @@
           data-id="<%= comment.id %>"
           name="<%= comment.id %>"
           value="Delete"
-          class="delete-btn btn btn-default"
+          class="delete-btn btn btn-default btn-sm"
         >
       </span>
     <% end %>
-    <span>- <%= comment.author.name %></span>
+    <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+    <span>
+      <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
+    </span>
     <span><%= image_tag comment.author.img_url, class: "twitter-pic" %></span>
   </div>
 </div>

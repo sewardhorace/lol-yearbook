@@ -8,8 +8,12 @@
       <p>Log in to write a note</p>
     <% end %>
 
-    <div id="comments-list">
+    <div class="comments-list" id="infinite-scrolling">
       <%= render partial: "comments/list", locals: {comments: comments}%>
+    </div>
+
+    <div class="foot">
+      <%= will_paginate comments %>
     </div>
   </div>
   <div class="hidden-xs col-md-2">&nbsp;</div>

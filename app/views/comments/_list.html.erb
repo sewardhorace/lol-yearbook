@@ -1,5 +1,8 @@
-<div class="comments-list">
+
+<% if comments.count > 0 %>
   <% comments.order(created_at: :desc).each do |c| %>
     <%= render partial: "comments/comment", locals: {comment: c}%>
   <% end %>
-</div>
+<% else %>
+  <p class="text-center">No notes yet...</p>
+<% end %>

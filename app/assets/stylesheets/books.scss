@@ -2,6 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+header{
+  text-align: center;
+}
 h3.title{
   display: inline-block;
   margin-right: 6px;
@@ -26,6 +29,11 @@ button.update{
   from { -webkit-transform: rotate(0deg); }
   to { -webkit-transform: rotate(360deg); }
 }
+@media (max-width: 991px) {
+  header{
+    text-align: left;
+  }
+}
 
 .thumb{
   padding: 8px 0;
@@ -43,4 +51,8 @@ button.update{
       text-align: center;
     }
   }
+}
+
+.foot{
+  text-align: center;
 }

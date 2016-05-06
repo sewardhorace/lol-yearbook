@@ -11,7 +11,13 @@ class BooksController < ApplicationController
   def show
     summoner_id = params[:summoner_id]
     if @book = Book.find_by(summoner_id: summoner_id) then
-      render "books/show"
+      respond_to do |format|
+        format.html {render "books/show"}
+        format.js do
+          @comments = @book.comments.paginate(page: params[:page])
+          render "comments/paginate"
+        end
+      end
     elsif summoner = RiotApi.summoner_by_id(summoner_id) then
       @book = Book.create(
         summoner_id: summoner["id"],
