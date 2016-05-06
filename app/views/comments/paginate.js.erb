@@ -1,7 +1,5 @@
-console.log("ready to paginate");
 $('#infinite-scrolling').append("<%= escape_javascript(render partial: 'comments/list', locals: {comments: @comments}) %>");
 <% if @comments.next_page %>
-  console.log("GOnna keep paginating");
   $('.pagination').replaceWith('<%= escape_javascript(will_paginate @comments) %>');
 <% else %>
   $(window).off('scroll');

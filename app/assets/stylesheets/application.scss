@@ -24,6 +24,7 @@
 }
 .navbar{
   margin-bottom: 0;
+  box-shadow: 0 5px 10px gray;
 }
 .navbar-text {
   float: left;
@@ -70,5 +71,11 @@ button.submit-btn{
 @media (max-width: 991px) {
   button.submit-btn{
     margin-top:0;
+  }
+}
+
+@media (max-width: 767px) {
+  .comment .signature span.visible-xs{
+    display: inline !important;
   }
 }

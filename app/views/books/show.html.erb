@@ -15,12 +15,19 @@
 <script>
 $(function() {
 
+  var readyToPaginate = true;
+
   if ($('#infinite-scrolling').size() > 0){
     $(window).on('scroll', function(){
-      var morePostsUrl = $('.pagination a.next_page').attr('href')
-      if (morePostsUrl && $(window).scrollTop() > $(document).height() - $(window).height() - 5){
-        $('.pagination').html("<span class='glyphicon glyphicon-refresh spinning'></span>");
-        $.getScript(morePostsUrl);
+      if (readyToPaginate){
+        var morePostsUrl = $('.pagination a.next_page').attr('href')
+        if (morePostsUrl && $(window).scrollTop() > $(document).height() - $(window).height() - 20){
+          $('.pagination').html("<span class='glyphicon glyphicon-refresh spinning'></span>");
+          readyToPaginate = false;
+          $.getScript(morePostsUrl, function(){
+            readyToPaginate = true;
+          });
+        }
       }
     });
   }

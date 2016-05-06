@@ -1,0 +1,20 @@
+<% if comment.author == current_user then %>
+  <span class="hidden-xs">
+    <input
+      type="button"
+      data-id="<%= comment.id %>"
+      name="<%= comment.id %>"
+      value="Delete"
+      class="delete-btn btn btn-default btn-sm"
+    >
+  </span>
+  <span class="visible-xs hidden-sm">
+    <input
+      type="button"
+      data-id="<%= comment.id %>"
+      name="<%= comment.id %>"
+      value="x"
+      class="delete-btn btn btn-default btn-sm"
+    >
+  </span>
+<% end %>
