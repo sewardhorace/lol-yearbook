@@ -25,4 +25,8 @@ class Champion < ActiveRecord::Base
       "Incoming"
     end
   end
+
+  def self.school_level
+
+  end
 end

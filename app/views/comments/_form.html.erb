@@ -1,9 +1,11 @@
-  <form class="comment-form">
+  <form class="comment-form" data-url="<%= new_comment_path %>">
   <textarea
-    name="commentText"
+    name="commentTextArea"
     class="form-control"
     rows="3"
     placeholder="Leave a note..."
+    data-type="<%=comment_type%>"
+    data-id="<%=type_id%>"
   ></textarea>
   <button type="submit" class="submit-btn btn btn-primary">Submit</button>
   </form>

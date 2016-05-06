@@ -5,15 +5,14 @@ Rails.application.routes.draw do
 
 #books
   get '/summoner/:summoner_id', to: 'books#show', as: 'book'
-  post '/summoner/:summoner_id/update', to: 'books#update', as: 'update_book'
+  post '/summoner/:summoner_id', to: 'books#update', as: 'update_book'
 
 #champions
   get '/summoner/:summoner_id/champion/:champion_id', to: 'champions#show', as: 'champion'
   get '/summoner/:summoner_id/champions', to: 'champions#index', as: 'champions'
 
 #comments
-  post '/comment/summoner', to: 'comments#new_book_comment', as: 'new_book_comment'
-  post '/comment/champion', to: 'comments#new_champion_comment', as: 'new_champion_comment'
+  post '/comment', to: 'comments#new', as: 'new_comment'
   delete '/comment', to: 'comments#destroy', as: 'delete_comment'
 
 #sessions

@@ -1,3 +1,40 @@
-// Place all the styles related to the comments controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+button.submit-btn{
+  width: 100%;
+  display: block;
+  margin: 6px auto;
+}
+
+.comments-list{
+  .comment{
+    padding: 10px 10px;
+    border-top: 1px solid gray;
+    p{
+      margin-bottom:0;
+    }
+    .signature {
+      text-align: right;
+      span{
+        padding-left:6px;
+        form{
+          display: inline;
+        }
+      }
+    }
+    .time{
+      color: gray;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  button.submit-btn{
+    margin-top:0;
+  }
+}
+
+@media (max-width: 767px) {
+  .comment .signature span.visible-xs{
+    display: inline !important;
+  }
+}

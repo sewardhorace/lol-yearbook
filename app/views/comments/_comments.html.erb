@@ -3,7 +3,7 @@
   <div class="col-xs-12 col-md-8">
     <h3>Notes:</h3>
     <% if current_user %>
-      <%= render partial: "comments/form" %>
+      <%= render partial: "comments/form", locals: {comment_type: comment_type, type_id: type_id } %>
     <% else %>
       <p>Log in to write a note</p>
     <% end %>
