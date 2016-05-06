@@ -2,3 +2,15 @@
   background: url("book.JPG");
   background-size: cover;
 }
+.greeting{
+  position: fixed;
+  top: 33%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  h1{
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+  }
+}
