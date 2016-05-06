@@ -1,6 +1,6 @@
 class Book < ActiveRecord::Base
-  has_many :champions
-  has_many :comments
+  has_many :champions, dependent: :destroy
+  has_many :comments, dependent: :destroy
 
   def update_summoner(summoner)
     if summoner then
