@@ -11,8 +11,6 @@
     <p class="title">"<%= @champion.static_data.title %>"</p>
   </div>
 
-  <div class="hidden-xs col-md-2">&nbsp;</div>
-
   <div class="hidden-xs col-sm-2 col-md-3">&nbsp;</div>
 
   <div class="col-xs-12 col-sm-4 col-md-3">
@@ -39,7 +37,13 @@
     <div class="asterisk">*Chest Earned</div>
   </div>
   <% end %>
-  
+
 </div>
 
 <%= render partial: "comments/comments", locals: {comments: @champion.comments.paginate(page: params[:page]), comment_type: "ChampionComment", type_id: @champion.id } %>
+
+<script>
+$(function(){
+  $("body").addClass("muslin-bg");
+})
+</script>

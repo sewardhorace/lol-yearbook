@@ -1,8 +1,8 @@
 $(function(){
   //filter champions by grade level
-  $(".level-selectors").on("click", "button", function(e){
+  $(".level-selectors").on("click", "input", function(e){
     var btn = $(this);
-    $(".level-selectors button").removeClass("active");
+    $(".level-selectors input").removeClass("active");
     btn.addClass("active");
     var data = {
       "filter": btn.data("grade")

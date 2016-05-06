@@ -2,11 +2,13 @@
 
 TODO:
 UI
-- tabs for each "class" (i.e. Seniors, Freshmen)
-- icon for tab in browser
+- icon for browser tabs
 - crest for welcome page
 - silly yearbook backgrounds (leathery front cover, portrait backdropish other pages)
+- better way to do bg images?
 edit comments?
+replying to comments (will have to modify delete method)
+upvoting/downvoting comments
 system/task for updating riot api versions
 limit how often a profile can be updated (24 hours?)
 model validation

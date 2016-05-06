@@ -1,8 +1,67 @@
 <div class="level-selectors">
-  <div class="btn-group" role="group" aria-label="...">
-    <button type="button" class="btn btn-default" data-grade="2" data-url="<%= champions_path %>">Freshmen</button>
-    <button type="button" class="btn btn-default" data-grade="3" data-url="<%= champions_path %>">Sophomores</button>
-    <button type="button" class="btn btn-default" data-grade="4" data-url="<%= champions_path %>">Juniors</button>
-    <button type="button" class="btn btn-default" data-grade="5" data-url="<%= champions_path %>">Seniors</button>
+  <div class="btn-group hidden-xs" role="group">
+    <input
+      type="button"
+      class="btn btn-default"
+      data-grade="2"
+      data-url="<%= champions_path %>"
+      value="Freshmen">
+    <input
+      type="button"
+      class="btn btn-default"
+      data-grade="3"
+      data-url="<%= champions_path %>"
+      value="Sophomores">
+    <input
+      type="button"
+      class="btn btn-default"
+      data-grade="4"
+      data-url="<%= champions_path %>"
+      value="Juniors">
+    <input
+      type="button"
+      class="btn btn-default"
+      data-grade="5"
+      data-url="<%= champions_path %>"
+      value="Seniors">
+  </div>
+  <div class="btn-group visible-xs">
+    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Select Class<span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <input
+          type="button"
+          class="btn btn-default"
+          data-grade="5"
+          data-url="<%= champions_path %>"
+          value="Seniors">
+        </li>
+      <li>
+        <input
+          type="button"
+          class="btn btn-default"
+          data-grade="4"
+          data-url="<%= champions_path %>"
+          value="Juniors">
+        </li>
+      <li>
+        <input
+          type="button"
+          class="btn btn-default"
+          data-grade="3"
+          data-url="<%= champions_path %>"
+          value="Sophomores">
+      </li>
+      <li>
+        <input
+          type="button"
+          class="btn btn-default"
+          data-grade="2"
+          data-url="<%= champions_path %>"
+          value="Freshmen">
+      </li>
+    </ul>
   </div>
 </div>

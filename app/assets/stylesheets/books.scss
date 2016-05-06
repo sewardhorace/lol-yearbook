@@ -9,7 +9,7 @@ h3.title{
   margin-top: 18px;
 }
 button.update{
-  vertical-align:baseline;
+  margin-bottom: 8px;
 }
 .glyphicon.spinning {
   padding: 0 12px;
@@ -27,14 +27,24 @@ button.update{
   from { -webkit-transform: rotate(0deg); }
   to { -webkit-transform: rotate(360deg); }
 }
-@media (max-width: 991px) {
-  header{
-    text-align: left;
-  }
-}
 
 .level-selectors{
   text-align: center;
+  .dropdown-toggle{
+    width:100%;
+  }
+  .dropdown-menu {
+    width:100%;
+    input{
+      border: none;
+      border-radius: 0;
+      width: 100%;
+      &:hover{
+        border: none;
+        border-radius: 0;
+      }
+    }
+  }
 }
 
 .grade-label{
@@ -65,4 +75,11 @@ button.update{
 
 .foot{
   text-align: center;
+}
+
+@media (max-width: 767px) {
+  button.update{
+    width: 100%;
+    font-size: 14px;
+  }
 }

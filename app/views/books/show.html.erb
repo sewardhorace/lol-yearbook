@@ -3,6 +3,7 @@
   <div class="col-xs-12">
     <header>
       <h3 class="title"><%= @book.summoner_name  %>'s Yearbook</h3>
+      <br class="visible-xs">
       <button
         type="button"
         class="btn btn-primary btn-sm update"
@@ -18,3 +19,9 @@
 </div>
 
 <%= render partial: "comments/comments", locals: {comments: @book.comments.paginate(page: params[:page]), comment_type: "BookComment", type_id: @book.id } %>
+
+<script>
+$(function(){
+  $("body").addClass("muslin-bg");
+})
+</script>
