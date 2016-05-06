@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 #comments
   post '/comment/summoner', to: 'comments#new_book_comment', as: 'new_book_comment'
   post '/comment/champion', to: 'comments#new_champion_comment', as: 'new_champion_comment'
-  delete '/comment/:id', to: 'comments#destroy', as: 'delete_comment'
+  delete '/comment', to: 'comments#destroy', as: 'delete_comment'
 
 #sessions
   get '/auth/:provider/callback', to: 'sessions#create'

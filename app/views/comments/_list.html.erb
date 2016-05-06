@@ -1,13 +1,5 @@
-<ul class="comments-list">
+<div class="comments-list">
   <% comments.order(created_at: :desc).each do |c| %>
-  <li id="comment-<%= c.id %>">
-    <%= c.text %>
-    <span><%= image_tag c.author.img_url, alt: c.author.name %></span>
-    <% if c.author == current_user then %>
-    <span>
-      <%= link_to "Delete", delete_comment_path(c.id), method: :delete, remote: true %>
-    </span>
-    <% end %>
-  </li>
+    <%= render partial: "comments/comment", locals: {comment: c}%>
   <% end %>
-</ul>
+</div>

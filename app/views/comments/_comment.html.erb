@@ -1,0 +1,18 @@
+<div class="comment" id="comment-<%=comment.id%>">
+  <p><%= comment.text %></p>
+  <div class="signature">
+    <% if comment.author == current_user then %>
+      <span>
+        <input
+          type="button"
+          data-id="<%= comment.id %>"
+          name="<%= comment.id %>"
+          value="Delete"
+          class="delete-btn btn btn-default"
+        >
+      </span>
+    <% end %>
+    <span>- <%= comment.author.name %></span>
+    <span><%= image_tag comment.author.img_url, class: "twitter-pic" %></span>
+  </div>
+</div>
