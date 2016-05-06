@@ -2,18 +2,54 @@
 <div class="row">
   <div class="col-xs-12">
     <header>
-    <h3 class="title"><%= @book.summoner_name  %>'s Yearbook</h3>
-    <button type="button" class="btn btn-primary btn-sm update">Update</button>
+      <h3 class="title"><%= @book.summoner_name  %>'s Yearbook</h3>
+      <button type="button" class="btn btn-primary btn-sm update">Update</button>
     </header>
+    <div class="level-selectors">
+      <div class="btn-group" role="group" aria-label="...">
+        <button type="button" class="btn btn-default" data-grade="2">Freshmen</button>
+        <button type="button" class="btn btn-default" data-grade="3">Sophomores</button>
+        <button type="button" class="btn btn-default" data-grade="4">Juniors</button>
+        <button type="button" class="btn btn-default" data-grade="5">Seniors</button>
+      </div>
+    </div>
   </div>
 </div>
 
-<%= render partial: "champion_thumbs", locals: {champions: @book.champions} %>
+<div id="champions">
+  <%= render partial: "champion_thumbs", locals: {champions: @book.champions.where(mastery_level: 5)} %>
+</div>
 
 <%= render partial: "comments/comments", locals: {comments: @book.comments.paginate(page: params[:page])} %>
 
 <script>
 $(function() {
+  if ($(".level-selectors").size() > 0){
+    $(".level-selectors").on("click", "button", function(e){
+      var btn = $(this);
+      console.log(btn.data("grade"));
+      $(".level-selectors button").removeClass("disabled active");
+      btn.addClass("disabled active");
+      var data = {
+        "filter": btn.data("grade")
+      };
+      $.ajax({
+        type: "GET",
+        url: "<%= champions_path %>",
+        data: data,
+        dataType: 'script',
+        encode: true,
+        success: function( result ) {
+          console.log("SUCCESS");
+        },
+        error: function( error ) {
+          console.log("ERROR");
+          var message = error.responseText;
+          console.log(message);
+        }
+      });
+    });
+  }
 
   var readyToPaginate = true;
 
@@ -112,12 +148,11 @@ $(function() {
 
   $( ".comments-list").on("click", "input.delete-btn", function(e) {
     e.preventDefault();
-    console.log("Delete button clicked");
     var result = window.confirm("Are you sure you want to delete this note?");
     if (!result){
       return;
     }
-    var commentId = $(e.target)[0].dataset.id;
+    var commentId = $(this).data("id");
     var comment = {
       'id': commentId
     };

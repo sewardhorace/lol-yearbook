@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
 #champions
   get '/summoner/:summoner_id/champion/:champion_id', to: 'champions#show', as: 'champion'
+  get '/summoner/:summoner_id/champions', to: 'champions#index', as: 'champions'
 
 #comments
   post '/comment/summoner', to: 'comments#new_book_comment', as: 'new_book_comment'

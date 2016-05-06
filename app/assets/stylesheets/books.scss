@@ -36,6 +36,14 @@ button.update{
   }
 }
 
+.level-selectors{
+  text-align: center;
+}
+
+.grade-label{
+  text-align: center;
+}
+
 .thumb{
   padding: 8px 0;
   img{
@@ -50,6 +58,10 @@ button.update{
     }
     p{
       text-align: center;
+    }
+    .glyphicon-star {
+      color: gold;
+      font-size: 14px;
     }
   }
 }

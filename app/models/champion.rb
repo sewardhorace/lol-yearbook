@@ -7,6 +7,10 @@ class Champion < ActiveRecord::Base
     return "Lvl #{self.mastery_level} Mastery"
   end
 
+  def summoner_id
+    return self.book.summoner_id
+  end
+
   def school_level
     return case self.mastery_level
     when 5

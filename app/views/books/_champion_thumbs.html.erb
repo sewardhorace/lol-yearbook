@@ -1,8 +1,11 @@
 <div class="row">
+  <div>
+    <h4 class="grade-label"><%= champions.first.school_level %> Class</h4>
+  </div>
   <% champions.order(mastery_points: :desc).each do |champ| %>
   <div class="col-sm-4 col-md-3">
     <div class="thumb">
-      <a href="<%= champion_path(@book.summoner_id, champ.champion_id) %>">
+      <a href="<%= champion_path(champ.summoner_id, champ.champion_id) %>">
         <img
           src="<%= champ.static_data.profile_url %>"
           alt="<%= champ.static_data.name %> <%= champ.champion_id %>"
@@ -10,7 +13,10 @@
       </a>
       <div class="info">
         <h4>
-          <a href="<%= champion_path(@book.summoner_id, champ.champion_id) %>">
+          <% if champ.chest_earned %>
+          <span class="glyphicon glyphicon-star"></span>
+          <% end %>
+          <a href="<%= champion_path(champ.summoner_id, champ.champion_id) %>">
             <%= champ.static_data.name %>
           </a>
         </h4>

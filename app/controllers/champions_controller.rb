@@ -1,4 +1,16 @@
 class ChampionsController < ApplicationController
+  def index
+    puts params
+    respond_to do |format|
+      format.html {redirect_to book_path(params[:summoner_id])}
+      format.js do
+        book = Book.find_by(summoner_id: params[:summoner_id])
+        @champions = Champion.where(book_id: book.id, mastery_level: params[:filter])
+        render "champions/index"
+      end
+    end
+  end
+
   def show
     book = Book.find_by(summoner_id: params[:summoner_id])
     @champion = Champion.find_by(book_id: book.id, champion_id: params[:champion_id])
