@@ -1,12 +1,12 @@
-= LoL Yearbook
+# LoL Yearbook
 
 A social web app for League of Legends that allows users to write notes to players and comment on the champions they play.
 
-View live site at (lol-yearbook.herokuapp.com).
+View live site at lol-yearbook.herokuapp.com.
 
 Built with Ruby on Rails.
 
-===Contributing:
+### Contributing:
 
 Make sure you have Ruby and Ruby on Rails installed. Since I depoy with Heroku I use PostgreSQL, so you'll need to have that installed as well. Fork this repository, then clone it to your machine:
 ```
@@ -24,7 +24,7 @@ Navigate to the directory you just created and run
 $ bundle install
 ```
 
-Lol Yearbook accesses the Riot API and authenticates users through Twitter. You will need API keys from Riot and Twitter, which can be obtained by registering at (https://developer.riotgames.com/) and (https://apps.twitter.com/), respectively. To keep these keys secret in the app, we must provide them as ENV variables. I use the figaro gem.
+Lol Yearbook accesses the Riot API and authenticates users through Twitter. You will need API keys from Riot and Twitter, which can be obtained by registering at https://developer.riotgames.com/ and https://apps.twitter.com/, respectively. To keep these keys secret in the app, we must provide them as ENV variables. I use the figaro gem.
 
 Run 
 ```
