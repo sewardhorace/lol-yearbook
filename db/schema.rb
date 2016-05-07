@@ -11,27 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160505161026) do
+ActiveRecord::Schema.define(version: 20160504161540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
     t.integer  "summoner_id"
+    t.string   "summoner_name"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.string   "summoner_name"
   end
 
   create_table "champions", force: :cascade do |t|
     t.integer  "champion_id"
     t.integer  "book_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.boolean  "chest_earned"
     t.string   "highest_grade"
     t.integer  "mastery_points"
     t.integer  "mastery_level"
-    t.boolean  "chest_earned"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   add_index "champions", ["book_id"], name: "index_champions_on_book_id", using: :btree
@@ -41,22 +41,23 @@ ActiveRecord::Schema.define(version: 20160505161026) do
     t.string   "type"
     t.integer  "book_id"
     t.integer  "champion_id"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.integer  "user_id"
   end
 
   add_index "comments", ["book_id"], name: "index_comments_on_book_id", using: :btree
   add_index "comments", ["champion_id"], name: "index_comments_on_champion_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "static_champions", force: :cascade do |t|
     t.integer  "champion_id"
     t.string   "name"
     t.string   "title"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.string   "profile_url"
     t.string   "splash_url"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "static_champions", ["champion_id"], name: "index_static_champions_on_champion_id", using: :btree
