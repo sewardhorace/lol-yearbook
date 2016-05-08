@@ -1,5 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: "user_id"
+  has_many :votes
   validates :user_id, presence: true
   validates :text, presence: true
 
@@ -27,7 +28,8 @@ class Comment < ActiveRecord::Base
     return comment
   end
 
-  def time
-    return time_ago_in_words(self.created_at)
+  def score
+    votes = self.votes
+    return votes.up.count - votes.down.count
   end
 end

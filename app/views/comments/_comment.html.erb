@@ -6,6 +6,8 @@
     <span>
       <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
     </span>
-    <span><%= image_tag comment.author.img_url, class: "twitter-pic" %></span>
+    <span  class="hidden-xs">
+      <%= image_tag comment.author.img_url, class: "twitter-pic" %>
+    </span>
   </div>
 </div>
