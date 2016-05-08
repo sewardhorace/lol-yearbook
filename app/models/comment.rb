@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: "user_id"
-  has_many :votes
+  has_many :votes, dependent: :destroy
   validates :user_id, presence: true
   validates :text, presence: true
 
@@ -31,5 +31,22 @@ class Comment < ActiveRecord::Base
   def score
     votes = self.votes
     return votes.up.count - votes.down.count
+  end
+
+  def upvote(voter_id)
+    vote_for_voter(voter_id).update(flag: true)
+  end
+
+  def downvote(voter_id)
+    vote_for_voter(voter_id).update(flag: false)
+  end
+
+  def unvote(voter_id)
+    vote_for_voter(voter_id).update(flag: nil)
+  end
+
+  private
+  def vote_for_voter(voter_id)
+    Vote.find_or_create_by(comment_id: self.id, user_id: voter_id)
   end
 end

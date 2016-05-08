@@ -1,0 +1,23 @@
+
+<%
+  id = comment.id
+  upvoted = current_user.upvoted?(id)
+  downvoted = current_user.downvoted?(id)
+  #TODO Better way? Want to reduce calls to database.
+%>
+<a
+  class="up vote-btn <%= upvoted ? "active" : "" %>"
+  rel="nofollow"
+  data-url="<%= vote_path %>"
+  data-id="<%= id %>"
+  data-flag="<%= upvoted ? "unvote" : "upvote" %>"
+><span class="glyphicon glyphicon-arrow-up"></span></a>
+<a
+  class="down vote-btn <%= downvoted ? "active" : "" %>"
+  rel="nofollow"
+  data-url="<%= vote_path %>"
+  data-id="<%= id %>"
+  data-flag="<%= downvoted ? "unvote" : "downvote" %>"
+><span class="glyphicon glyphicon-arrow-down"></span></a>
+
+<span class="score"><%= pluralize(comment.score, 'point') %></span>

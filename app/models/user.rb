@@ -11,4 +11,25 @@ class User < ActiveRecord::Base
     )
     return user
   end
+
+  def upvoted?(comment_id)
+    if vote = vote_for_comment(comment_id) then
+      return vote.flag == true
+    else
+      false
+    end
+  end
+
+  def downvoted?(comment_id)
+    if vote = vote_for_comment(comment_id) then
+      return vote.flag == false
+    else
+      false
+    end
+  end
+
+  private
+  def vote_for_comment(comment_id)
+    self.votes.find_by(comment_id: comment_id)
+  end
 end

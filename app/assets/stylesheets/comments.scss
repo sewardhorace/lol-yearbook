@@ -12,17 +12,39 @@ button.submit-btn{
     p{
       margin-bottom:0;
     }
-    .signature {
+    .signature-block {
       text-align: right;
-      span{
-        padding-left:6px;
-        form{
-          display: inline;
+      .time{
+        color: gray;
+        padding-right: 6px;
+      }
+      .score{
+        color: gray;
+        padding-right: 6px;
+      }
+      .vote-btn{
+        padding: 6px;
+        display: inline;
+        color: gray;
+      }
+      .up{
+        margin-left:3px;
+        &:hover {
+          color:#2c3894;
+        }
+        &.active {
+          color:#2c3894;
         }
       }
-    }
-    .time{
-      color: gray;
+      .down{
+        margin-right:3px;
+        &:hover {
+          color:#942c2c;
+        }
+        &.active {
+          color:#942c2c;
+        }
+      }
     }
   }
 }
@@ -34,7 +56,7 @@ button.submit-btn{
 }
 
 @media (max-width: 767px) {
-  .comment .signature span.visible-xs{
+  .comment .signature-block span.visible-xs{
     display: inline !important;
   }
 }

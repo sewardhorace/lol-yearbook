@@ -25,8 +25,25 @@ class CommentsController < ApplicationController
     end
   end
 
+  def vote
+    respond_to do |format|
+      flag = comment_params[:vote_flag]
+      user_id = comment_params[:user_id]
+      comment = Comment.find(comment_params[:id])
+      if flag == "true" then
+        vote = comment.upvote(user_id)
+      elsif flag == "false" then
+        vote = comment.downvote(user_id)
+      else
+        puts "UNVOTING"
+        vote = comment.unvote(user_id)
+      end
+      format.json { render json: vote }
+    end
+  end
+
   private
   def comment_params
-    params.require(:comment).permit(:text, :id, :type).merge(user_id: current_user.id)
+    params.require(:comment).permit(:text, :id, :type, :vote_flag, :user_id).merge(user_id: current_user.id)
   end
 end

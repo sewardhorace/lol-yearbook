@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 #comments
   post '/comment', to: 'comments#new', as: 'new_comment'
   delete '/comment', to: 'comments#destroy', as: 'delete_comment'
+  put '/comment/vote', to: 'comments#vote', as: 'vote'
 
 #sessions
   get '/auth/:provider/callback', to: 'sessions#create'
