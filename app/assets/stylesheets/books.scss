@@ -10,6 +10,7 @@ h3.title{
 }
 button.update{
   margin-bottom: 8px;
+
 }
 .glyphicon.spinning {
   padding: 0 12px;
@@ -30,6 +31,15 @@ button.update{
 
 .level-selectors{
   text-align: center;
+  .hidden-xs input{
+    background-color: rgba(255, 255, 255, 0.5);
+    &:focus{
+      outline: none;
+    }
+    &.active:focus, :active:focus, :active:hover{
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
   .dropdown-toggle{
     width:100%;
   }
