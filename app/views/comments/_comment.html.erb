@@ -1,21 +1,21 @@
 <div class="comment" id="comment-<%=comment.id%>">
 
-  <p><%= comment.text %></p>
+  <p class="text"><%= comment.text %></p>
 
   <div class="signature-block">
+    <span class="visible-xs">
+      <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
+      <br>
+    </span>
+
     <%= render partial: "comments/delete_button", locals:{comment: comment} %>
 
-    <span class="voting">
-      <%= render partial: "comments/vote", locals:{comment: comment} %>
-    </span>
+    <%= render partial: "comments/vote", locals:{comment: comment} %>
 
     <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
 
-    <span>
+    <span class="hidden-xs">
       <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
-    </span>
-
-    <span  class="hidden-xs">
       <%= image_tag comment.author.img_url, class: "twitter-pic" %>
     </span>
   </div>

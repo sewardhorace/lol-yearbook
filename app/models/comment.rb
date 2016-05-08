@@ -34,15 +34,21 @@ class Comment < ActiveRecord::Base
   end
 
   def upvote(voter_id)
-    vote_for_voter(voter_id).update(flag: true)
+    vote = vote_for_voter(voter_id)
+    vote.update(flag: true)
+    vote
   end
 
   def downvote(voter_id)
-    vote_for_voter(voter_id).update(flag: false)
+    vote = vote_for_voter(voter_id)
+    vote.update(flag: false)
+    vote
   end
 
   def unvote(voter_id)
-    vote_for_voter(voter_id).update(flag: nil)
+    vote = vote_for_voter(voter_id)
+    vote.update(flag: nil)
+    vote
   end
 
   private

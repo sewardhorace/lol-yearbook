@@ -1,22 +1,13 @@
 <% if comment.author == current_user then %>
-  <span class="hidden-xs">
+  <span>
     <input
       type="button"
       data-id="<%= comment.id %>"
       data-url="<%= delete_comment_path %>"
       name="<%= comment.id %>"
       value="Delete"
-      class="delete-btn btn btn-default btn-sm"
+      class="delete-btn btn btn-default"
     >
-  </span>
-  <span class="visible-xs hidden-sm">
-    <input
-      type="button"
-      data-id="<%= comment.id %>"
-      data-url="<%= delete_comment_path %>"
-      name="<%= comment.id %>"
-      value="x"
-      class="delete-btn btn btn-default btn-sm"
-    >
+    <br class="visible-xs">
   </span>
 <% end %>

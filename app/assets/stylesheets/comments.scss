@@ -9,11 +9,28 @@ button.submit-btn{
   .comment{
     padding: 10px 10px;
     border-top: 1px solid gray;
-    p{
+    .text{
+      margin-top: 10px;
       margin-bottom:0;
     }
     .signature-block {
       text-align: right;
+      input.delete-btn{
+        border:none;
+        background-color:inherit;
+        padding: 0;
+        color: #a66363;
+        &:hover{
+          color: #b10000;
+        }
+        &:active{
+          box-shadow: none;
+          outline: none;
+        }
+        &:focus{
+          outline: none;
+        }
+      }
       .time{
         color: gray;
         padding-right: 6px;
@@ -56,7 +73,12 @@ button.submit-btn{
 }
 
 @media (max-width: 767px) {
-  .comment .signature-block span.visible-xs{
-    display: inline !important;
+  .comments-list .comment {
+    .text{
+      margin-top: 0;
+    }
+    .signature-block span.visible-xs{
+      display: inline !important;
+    }
   }
 }
