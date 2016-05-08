@@ -3,9 +3,9 @@ class BooksController < ApplicationController
     if summoner = RiotApi.summoner_by_name(search_params) then
       redirect_to book_path(summoner['id'])
     else
-      raise ActionController::RoutingError.new('Not Found')
-      #TODO actually create a 404 page
+      render "shared/not_found"
     end
+    #TODO more descriptive than '404'
   end
 
   def show
@@ -25,8 +25,7 @@ class BooksController < ApplicationController
       )
       render "books/show"
     else
-      raise ActionController::RoutingError.new('Not Found')
-      #TODO actually create a 404 page
+      render "shared/not_found"
     end
   end
 

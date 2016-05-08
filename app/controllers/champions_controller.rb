@@ -1,6 +1,5 @@
 class ChampionsController < ApplicationController
   def index
-    puts params
     respond_to do |format|
       format.html {redirect_to book_path(params[:summoner_id])}
       format.js do
@@ -15,10 +14,14 @@ class ChampionsController < ApplicationController
     book = Book.find_by(summoner_id: params[:summoner_id])
     @champion = Champion.find_by(book_id: book.id, champion_id: params[:champion_id])
     respond_to do |format|
-      format.html {render "champions/show"}
-      format.js do
-        @comments = @champion.comments.paginate(page: params[:page])
-        render "comments/paginate"
+      if @champion then
+        format.html {render "champions/show"}
+        format.js do
+          @comments = @champion.comments.paginate(page: params[:page])
+          render "comments/paginate"
+        end
+      else
+        format.html {render "shared/not_found"}
       end
     end
   end
