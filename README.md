@@ -6,7 +6,7 @@ View live site at [lol-yearbook.herokuapp.com](http://lol-yearbook.herokuapp.com
 
 Built with Ruby on Rails.
 
-### Contributing:
+### Development:
 
 Make sure you have Ruby and Ruby on Rails installed. Since I depoy with Heroku I use PostgreSQL, so you'll need to have that installed as well. Fork this repository, then clone it to your machine:
 ```
@@ -26,7 +26,7 @@ $ bundle install
 
 Lol Yearbook accesses the Riot API and authenticates users through Twitter. You will need API keys from Riot and Twitter, which can be obtained by registering at https://developer.riotgames.com/ and https://apps.twitter.com/, respectively. To keep these keys secret in the app, we must provide them as ENV variables. I use the figaro gem.
 
-Run 
+Run
 ```
 $ bundle exec figaro install
 ```
@@ -50,21 +50,37 @@ $ rails s
 ```
 to start the server. Open a browser and navigate to localhost:3000.
 
-TODO:
-Testing???
-UI
-- icon for browser tab
-- crest for welcome page
-- better way to do bg images?
-allow editing comments?
-replying to comments (will have to modify delete method)
-upvoting/downvoting comments
-system/task for keeping riot api versions up to date
-limit how often a profile can be updated (24 hours?)
-model validation
-better/more descriptive error handling
-allow selection of region (probably should save region to book?)
-add champion quotes
+### Contributing:
 
+Create a new branch to work on features or changes:
+```
+$ git checkout -b your-new-featureg
+```
+Commit and push your work back up to your fork:
+```
+$ git push origin your-new-feature
+```
+[Submit a Pull request](https://help.github.com/articles/using-pull-requests/) so your changes can be reviewed.
 
+!Be sure to merge the latest from "upstream" before making a pull request!
+```
+git remote add upstream https://github.com/sewardhorace/lol-yearbook.git
+git pull upstream master
+```
 
+If you find a bug that you don't know how to fix, or you have an idea for a feature but you don't know how to implement it, please [create an issue](https://help.github.com/articles/creating-an-issue/)! (But first, check to see that someone didn't already create the same issue.)
+
+### TODO:
+- quotes for champion static data
+- limit how often a profile can be updated (24 hours?)
+- model validation
+- Allow replying to comments
+- Crest for welcome page
+- Icon for browser tab
+- Testing??? I never learned how to write tests. It'd be great to have them.
+- Allow users to edit comments
+- system/task for keeping riot api versions up to date
+- better/more descriptive error handling/100% RESTful endpoints
+- allow selection of region (probably should save region to book table)
+- Procfile for Heroku
+- Optimizing database interactions (https://www.airpair.com/ruby-on-rails/performance, https://blog.codeship.com/speed-up-activerecord/)
