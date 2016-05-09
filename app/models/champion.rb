@@ -1,7 +1,7 @@
 class Champion < ActiveRecord::Base
   belongs_to :book
   has_many :comments, dependent: :destroy
-  has_one :static_data, class_name: "StaticChampion", foreign_key: "champion_id", primary_key: "champion_id"
+  has_one :static_data, class_name: "StaticChampion", primary_key: "champion_id"
   validates :book_id, :champion_id, presence: true
 
   def mastery_title

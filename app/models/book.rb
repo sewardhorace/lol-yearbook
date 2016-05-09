@@ -4,7 +4,7 @@ class Book < ActiveRecord::Base
   validates :summoner_id, presence: true, uniqueness: true
   validates :summoner_name, presence: true
 
-  def create_from_summoner(summoner)
+  def self.create_from_summoner(summoner)
     Book.create(summoner_id: summoner["id"], summoner_name: summoner["name"])
   end
 
@@ -20,25 +20,30 @@ class Book < ActiveRecord::Base
     if !self.updateable then
       return false
     end
-    #TODO activerecord rollback catch
-    champion_data.each do |mastery_data|
-      champion_id = mastery_data["championId"]
-      champ = Champion.find_or_create_by(
-        champion_id: champion_id,
-        book_id: self.id
-      )
-      champ.update(
-        highest_grade: mastery_data["highestGrade"],
-        mastery_points: mastery_data["championPoints"],
-        mastery_level: mastery_data["championLevel"],
-        chest_earned: mastery_data["chestGranted"]
-      )
-      champ.touch
+    book_id = self.id
+    now = Time.now
+    ActiveRecord::Base.transaction do
+      champion_data.each do |mastery_data|
+        champion_id = mastery_data["championId"]
+        champ = Champion.find_by(champion_id: champion_id, book_id: book_id)
+        if !champ then
+          champ = Champion.new(champion_id: champion_id, book_id: book_id)
+        end
+        champ.update(
+          highest_grade: mastery_data["highestGrade"],
+          mastery_points: mastery_data["championPoints"],
+          mastery_level: mastery_data["championLevel"],
+          chest_earned: mastery_data["chestGranted"],
+          updated_at: now
+        )
+      end
     end
-    return true
+    #TODO error handling catch
+    #TODO more efficient mass update with raw query
   end
 
   def updateable
+    return true
     if champion = self.champions.take then
       champion.updated_at < 1.day.ago
     else

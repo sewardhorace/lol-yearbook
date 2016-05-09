@@ -4,7 +4,7 @@ class ChampionsController < ApplicationController
       format.html {redirect_to book_path(params[:summoner_id])}
       format.js do
         book = Book.find_by(summoner_id: params[:summoner_id])
-        @champions = Champion.where(book_id: book.id, mastery_level: params[:filter])
+        @champions = Champion.includes(:static_data, comments: [:author, :votes]).where(book_id: book.id, mastery_level: params[:filter])
         render "champions/index"
       end
     end
@@ -12,16 +12,23 @@ class ChampionsController < ApplicationController
 
   def show
     book = Book.find_by(summoner_id: params[:summoner_id])
-    @champion = Champion.find_by(book_id: book.id, champion_id: params[:champion_id])
+    champion = Champion.find_by(book_id: book.id, champion_id: params[:champion_id])
     respond_to do |format|
-      if @champion then
-        format.html {render "champions/show"}
-        format.js do
-          @comments = @champion.comments.paginate(page: params[:page])
-          render "comments/paginate"
+      format.html do
+        if champion then
+          @champion = Champion.includes(:static_data, comments: [:author, :votes]).find(champion.id)
+          render "champions/show"
+        else
+          render "shared/not_found"
         end
-      else
-        format.html {render "shared/not_found"}
+      end
+      format.js do
+        if champion then
+          @comments = champion.comments.includes(:author, :votes).paginate(page: params[:page])
+          render "comments/paginate"
+        else
+          render nothing: true
+        end
       end
     end
   end
