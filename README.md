@@ -71,14 +71,14 @@ git pull upstream master
 If you find a bug that you don't know how to fix, or you have an idea for a feature but you don't know how to implement it, please [create an issue](https://help.github.com/articles/creating-an-issue/)! (But first, check to see that someone didn't already create the same issue.)
 
 ### TODO:
-- Allow replying to comments
 - Crest for welcome page
 - Icon for browser tab
+- Allow replying to comments
 - Testing??? I never learned how to write tests. It'd be great to have them.
-- Allow users to edit comments
+- Allow users to edit their comments
 - system/task for keeping riot api versions up to date
 - better/more descriptive error handling/100% RESTful endpoints
 - allow selection of region (probably should save region to book table)
-- Procfile for Heroku (serve with Puma?)
-- Optimizing database interactions (https://www.airpair.com/ruby-on-rails/performance, https://blog.codeship.com/speed-up-activerecord/)
+- Procfile for Heroku (serve with Puma? Unicorn?)
+- Optimizing database interactions (raw SQL)
 - User page, favoriting summoners, some kind of feed
