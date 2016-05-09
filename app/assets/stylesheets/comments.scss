@@ -81,8 +81,16 @@ button.submit-btn{
     .text{
       margin-top: 0;
     }
-    .signature-block span.visible-xs{
-      display: inline !important;
+    .signature-block {
+      span.visible-xs{
+        display: inline !important;
+      }
+      .up:hover{
+        color: gray;
+      }
+      .down:hover{
+        color: gray;
+      }
     }
   }
 }
