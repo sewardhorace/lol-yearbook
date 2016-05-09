@@ -1,8 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: "user_id"
   has_many :votes, dependent: :destroy
-  validates :user_id, presence: true
-  validates :text, presence: true
+  validates :user_id, :text, presence: true
 
   self.per_page = 10
 
