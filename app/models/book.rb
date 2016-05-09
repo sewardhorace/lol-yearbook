@@ -10,9 +10,9 @@ class Book < ActiveRecord::Base
   end
 
   def update_champions(champion_data)
-    # if !self.updateable? then
-    #   return false
-    # end
+    if !self.updateable then
+      return false
+    end
     #TODO activerecord rollback catch
     champion_data.each do |mastery_data|
       champion_id = mastery_data["championId"]
@@ -27,6 +27,7 @@ class Book < ActiveRecord::Base
         chest_earned: mastery_data["chestGranted"]
       )
     end
+    return true
   end
 
   def updateable
