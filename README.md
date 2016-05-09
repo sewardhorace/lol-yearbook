@@ -82,3 +82,4 @@ If you find a bug that you don't know how to fix, or you have an idea for a feat
 - allow selection of region (probably should save region to book table)
 - Procfile for Heroku (serve with Puma?)
 - Optimizing database interactions (https://www.airpair.com/ruby-on-rails/performance, https://blog.codeship.com/speed-up-activerecord/)
+- User page, favoriting summoners, some kind of feed

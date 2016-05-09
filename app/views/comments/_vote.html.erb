@@ -1,8 +1,14 @@
 
 <%
   id = comment.id
-  upvoted = current_user.upvoted?(id)
-  downvoted = current_user.downvoted?(id)
+  if current_user then
+    upvoted = current_user.upvoted?(id)
+    downvoted = current_user.downvoted?(id)
+  else
+    upvoted = false
+    downvoted = false
+  end
+
   score = comment.score
   if upvoted then
     base_score = score-1
@@ -14,6 +20,7 @@
   #TODO Better way? Want to reduce calls to database.
 %>
 <span class="voting">
+<% if current_user %>
   <a
     class="up vote-btn <%= upvoted ? "active" : "" %>"
     rel="nofollow"
@@ -28,6 +35,14 @@
     data-id="<%= id %>"
     data-flag="<%= downvoted ? "unvote" : "downvote" %>"
   ><span class="glyphicon glyphicon-arrow-down"></span></a>
+<% else %>
+  <a
+    class="up vote-btn"
+  ><span class="glyphicon glyphicon-arrow-up"></span></a>
+  <a
+    class="down vote-btn"
+  ><span class="glyphicon glyphicon-arrow-down"></span></a>
+<% end %>
 
   <span
     data-score-upvoted="<%= pluralize(base_score+1, 'point') %>"
