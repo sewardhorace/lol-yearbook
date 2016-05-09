@@ -53,6 +53,9 @@ $(function(){
   };
 
   $( "button.update" ).on( "click", function(e) {
+    if ($(this).hasClass("disabled")){
+      return;
+    }
     $(this).addClass("disabled");
     $(this).html("<span class='glyphicon glyphicon-refresh spinning'></span>");
     updateBook({

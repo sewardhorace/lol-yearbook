@@ -5,7 +5,7 @@
     <% if current_user %>
       <%= render partial: "comments/form", locals: {comment_type: comment_type, type_id: type_id } %>
     <% else %>
-      <p>Log in to write a note</p>
+      <p class="text-center"><%= link_to 'Log in with Twitter',  '/auth/twitter' %> to write a note.</p>
     <% end %>
 
     <div class="comments-list" id="infinite-scrolling">
