@@ -73,12 +73,18 @@ If you find a bug that you don't know how to fix, or you have an idea for a feat
 ### TODO:
 - Crest for welcome page
 - Icon for browser tab
+- Region selection
+- remove summoner commenting (only comment on champions)
+- Champion filter update (filter by checkbox)
 - Allow replying to comments
+- Procfile for Heroku (serve with Puma? Unicorn?)
+- Sharing comments on Twitter
 - Testing??? I never learned how to write tests. It'd be great to have them.
 - Allow users to edit their comments
 - system/task for keeping riot api versions up to date
 - better/more descriptive error handling/100% RESTful endpoints
 - allow selection of region (probably should save region to book table)
-- Procfile for Heroku (serve with Puma? Unicorn?)
 - Optimizing database interactions (raw SQL)
 - User page, favoriting summoners, some kind of feed
+
+LOL Yearbook isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing League of Legends. League of Legends and Riot Games are trademarks or registered trademarks of Riot Games, Inc. League of Legends © Riot Games, Inc.
