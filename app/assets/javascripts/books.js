@@ -2,6 +2,7 @@ $(function(){
   //filter champions by grade level
   $(".level-selectors").on("click", "input", function(e){
     var btn = $(this);
+    $(".level-selectors .btn-group").removeClass("open");
     $(".level-selectors input").removeClass("active");
     btn.addClass("active");
     var data = {
