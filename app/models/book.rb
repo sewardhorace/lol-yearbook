@@ -4,11 +4,16 @@ class Book < ActiveRecord::Base
   validates :summoner_id, presence: true, uniqueness: true
   validates :summoner_name, presence: true
 
+  def create_from_summoner(summoner)
+    Book.create(summoner_id: summoner["id"], summoner_name: summoner["name"])
+  end
+
   def update_summoner(summoner)
     if summoner then
       self.update(summoner_name: summoner["name"])
     end
     return self
+    #TODO this sucks
   end
 
   def update_champions(champion_data)
