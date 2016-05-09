@@ -25,7 +25,7 @@ class Book < ActiveRecord::Base
         mastery_points: mastery_data["championPoints"],
         mastery_level: mastery_data["championLevel"],
         chest_earned: mastery_data["chestGranted"]
-      )
+      ).touch
     end
     return true
   end

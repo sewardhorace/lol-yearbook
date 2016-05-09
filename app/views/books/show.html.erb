@@ -4,12 +4,7 @@
     <header>
       <h3 class="title"><%= @book.summoner_name  %>'s Yearbook</h3>
       <br class="visible-xs">
-      <button
-        type="button"
-        class="btn btn-primary btn-sm update <%= @book.updateable ? "" : "disabled" %>"
-        data-update-url="<%= update_book_path(@book.summoner_id)%>"
-      >Update</button>
-      <span class="update-text">Update available in <%= time_ago_in_words(@book.next_update_time) %></span>
+      <%= render partial: "books/update_button", locals: {book: @book} %>
       <%= render partial: "books/filter_control" %>
     </header>
   </div>
