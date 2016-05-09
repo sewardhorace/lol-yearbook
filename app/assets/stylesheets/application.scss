@@ -1,10 +1,10 @@
 
- @import "bootstrap-sprockets";
- @import "bootstrap";
- @import "welcome";
- @import "books";
- @import "champions";
- @import "comments";
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "welcome";
+@import "books";
+@import "champions";
+@import "comments";
 
 @media (max-width: 767px) {
   .navbar-form{
