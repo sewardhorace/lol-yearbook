@@ -43,7 +43,6 @@ class Book < ActiveRecord::Base
   end
 
   def updateable
-    return true
     if champion = self.champions.take then
       champion.updated_at < 1.day.ago
     else
