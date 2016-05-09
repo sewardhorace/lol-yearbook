@@ -12,6 +12,10 @@ button.update{
   margin-bottom: 8px;
 
 }
+.update-text{
+  color: gray;
+  font-size: 12px;
+}
 .glyphicon.spinning {
   padding: 0 12px;
   animation: spin 1s infinite linear;
@@ -91,5 +95,6 @@ button.update{
   button.update{
     width: 100%;
     font-size: 14px;
+    margin-bottom: 0;
   }
 }
