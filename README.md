@@ -71,8 +71,6 @@ git pull upstream master
 If you find a bug that you don't know how to fix, or you have an idea for a feature but you don't know how to implement it, please [create an issue](https://help.github.com/articles/creating-an-issue/)! (But first, check to see that someone didn't already create the same issue.)
 
 ### TODO:
-- quotes for champion static data
-- limit how often a profile can be updated (24 hours?)
 - model validation
 - Allow replying to comments
 - Crest for welcome page
@@ -82,5 +80,5 @@ If you find a bug that you don't know how to fix, or you have an idea for a feat
 - system/task for keeping riot api versions up to date
 - better/more descriptive error handling/100% RESTful endpoints
 - allow selection of region (probably should save region to book table)
-- Procfile for Heroku
+- Procfile for Heroku (serve with Puma?)
 - Optimizing database interactions (https://www.airpair.com/ruby-on-rails/performance, https://blog.codeship.com/speed-up-activerecord/)
