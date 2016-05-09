@@ -1,6 +1,8 @@
 desc "Update local static champion data from Riot API"
 task :update_static_data => :environment do
   require "#{Rails.root}/lib/riot_api"
+  require "#{Rails.root}/lib/quotes"
+  quotes = ChampionQuotes.quotes.with_indifferent_access
   puts "Updating local static champion data from Riot API"
   puts "Fetching champion data..."
   champions = RiotApi.all_champions()
@@ -8,17 +10,24 @@ task :update_static_data => :environment do
   puts "Updating local database..."
   champions.each do |data|
     champ_data = data.last
+
     puts "Fetching img URLs..."
-    img_key = champ_data["key"]
-    profile_url = RiotApi.champion_profile_img_url(img_key)
-    splash_url = RiotApi.champion_splash_img_url(img_key)
+    key_name = champ_data["key"]
+    profile_url = RiotApi.champion_profile_img_url(key_name)
+    splash_url = RiotApi.champion_splash_img_url(key_name)
+
+    puts "Fetching quote..."
+    quote = quotes[key_name]
+    puts quote
+
     if champ = StaticChampion.find_by(champion_id: champ_data["id"])
       puts "Updating local record:"
       champ.update(
         name: champ_data["name"],
         title: champ_data["title"],
         profile_url: profile_url,
-        splash_url: splash_url
+        splash_url: splash_url,
+        quote: quote
       )
     else
       puts "Creating new local record:"
@@ -27,7 +36,8 @@ task :update_static_data => :environment do
         name: champ_data["name"],
         title: champ_data["title"],
         profile_url: profile_url,
-        splash_url: splash_url
+        splash_url: splash_url,
+        quote: quote
       )
     end
     puts champ
