@@ -3,7 +3,7 @@
   <button
     type="button"
     class="btn btn-primary btn-sm update <%= updateable ? "" : "disabled" %>"
-    data-update-url="<%= update_book_path(book.summoner_id)%>"
+    data-update-url="<%= update_book_path(book.region, book.summoner_id)%>"
   >Update</button>
 <% else %>
   <span class="update-text">Update available in <%= time_ago_in_words(book.next_update_time) %></span>

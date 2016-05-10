@@ -31,6 +31,35 @@
         accept-charset="UTF-8"
       >
         <div class="input-group">
+          <div class="input-group-btn">
+            <input
+              name="region-button"
+              type="button"
+              value="NA"
+              class="btn btn-default dropdown-toggle"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="true"
+            >
+            <input
+              name="region"
+              type="hidden"
+              value="na"
+            >
+            <ul class="dropdown-menu">
+              <li data-region="br" class="region">BR</li>
+              <li data-region="eune" class="region">EUNE</li>
+              <li data-region="euw" class="region">EUW</li>
+              <li data-region="jp" class="region">JP</li>
+              <li data-region="kr" class="region">KR</li>
+              <li data-region="lan" class="region">LAN</li>
+              <li data-region="las" class="region">LAS</li>
+              <li data-region="na" class="region">NA</li>
+              <li data-region="oce" class="region">OCE</li>
+              <li data-region="ru" class="region">RU</li>
+              <li data-region="tr" class="region">TR</li>
+            </ul>
+          </div>
           <input
             class="form-control"
             placeholder="Summoner Name"

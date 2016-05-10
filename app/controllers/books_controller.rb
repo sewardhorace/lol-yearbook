@@ -1,18 +1,28 @@
 class BooksController < ApplicationController
   def search
-    if summoner = RiotApi.summoner_by_name(search_params) then
-      redirect_to book_path(summoner['id'])
-    else
-      render "shared/not_found"
+    name = search_params[:summoner_name]
+    region = search_params[:region] || "NA"
+    respond_to do |format|
+      if summoner = RiotApi.summoner_by_name(name, region) then
+        format.json {render json: {url: book_path(region, summoner['id'])}}
+        format.html {redirect_to book_path(region, summoner['id'])}
+      else
+        format.json {render json: false}
+        format.html {render "shared/not_found"}
+      end
     end
-    #TODO more descriptive than '404'
+    # #TODO more descriptive than '404'
   end
 
   def show
     summoner_id = params[:summoner_id]
-    book = Book.find_by(summoner_id: summoner_id)
+    region = params[:region]
+    book = Book.find_by(summoner_id: summoner_id, region: region)
+    puts "BOOK"
+    puts params
+    puts book
     if !book then
-      book = Book.create_from_summoner(RiotApi.summoner_by_id(summoner_id))
+      book = Book.create_from_summoner(RiotApi.summoner_by_id(summoner_id, region))
     end
 
     respond_to do |format|
@@ -25,7 +35,8 @@ class BooksController < ApplicationController
       end
 
       format.js do
-        if @comments = book.comments.includes(:author, :votes).paginate(page: params[:page]) then
+        if book && @comments = book.comments.includes(:author, :votes).paginate(page: params[:page]) then
+          @region = book.region
           render "comments/paginate"
         else
           render nothing: true
@@ -38,8 +49,8 @@ class BooksController < ApplicationController
     summoner_id =  params[:summoner_id]
     respond_to do |format|
       if book = Book.find_by(summoner_id: summoner_id) then
-        book.update_summoner(RiotApi.summoner_by_id(summoner_id))
-        book.update_champions(RiotApi.champion_mastery(summoner_id))
+        book.update_summoner(RiotApi.summoner_by_id(summoner_id, book.region))
+        book.update_champions(RiotApi.champion_mastery(summoner_id, book.region))
         flash[:success] = 'Yearbook now up to date.'
         format.json {render json: true, status: :ok}
         format.html {redirect_to action: :show}
@@ -56,5 +67,7 @@ class BooksController < ApplicationController
   private
   def search_params
     params.require(:summoner_name)
+    params.require(:region)
+    params
   end
 end

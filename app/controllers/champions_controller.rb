@@ -1,7 +1,7 @@
 class ChampionsController < ApplicationController
   def index
     respond_to do |format|
-      format.html {redirect_to book_path(params[:summoner_id])}
+      format.html {redirect_to book_path(params[:region], params[:summoner_id])}
       format.js do
         book = Book.find_by(summoner_id: params[:summoner_id])
         @champions = Champion.includes(:static_data, comments: [:author, :votes]).where(book_id: book.id, mastery_level: params[:filter])

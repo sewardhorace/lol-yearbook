@@ -5,7 +5,7 @@
 
   <div class="col-xs-12 col-md-8">
     <h3>
-      <a href="<%= book_path(@champion.book.summoner_id) %>">
+      <a href="<%= book_path(@champion.book.region, @champion.book.summoner_id) %>">
         <%= @champion.book.summoner_name %></a>'s <%= @champion.static_data.name  %>
     </h3>
     <p class="title">"<%= @champion.static_data.title %>"</p>

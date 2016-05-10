@@ -20,6 +20,18 @@
   margin-left: 15px;
   margin-right: 15px;
 }
+.navbar-form{
+  ul.dropdown-menu {
+    min-width: 70px;
+    li.region{
+      padding-left: 10px;
+      &:hover{
+        background-color: #ebebeb;
+        cursor: pointer;
+      }
+    }
+  }
+}
 .twitter-pic{
  border-radius: 50%;
 }

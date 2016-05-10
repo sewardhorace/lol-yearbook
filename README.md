@@ -71,11 +71,10 @@ git pull upstream master
 If you find a bug that you don't know how to fix, or you have an idea for a feature but you don't know how to implement it, please [create an issue](https://help.github.com/articles/creating-an-issue/)! (But first, check to see that someone didn't already create the same issue.)
 
 ### TODO:
-- Icon for browser tab
-- Region selection
 - remove summoner commenting (only comment on champions)
 - Champion filter update (filter by checkbox)
 - Allow replying to comments
+- Serious mess in RiotApi module (lib/riot_api.rb)
 - Procfile for Heroku (serve with Puma? Unicorn?)
 - Sharing comments on Twitter
 - Testing??? I never learned how to write tests. It'd be great to have them.

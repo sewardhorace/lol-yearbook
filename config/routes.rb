@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   get '/search', to: 'books#search'
 
 #books
-  get '/summoner/:summoner_id', to: 'books#show', as: 'book'
-  post '/summoner/:summoner_id', to: 'books#update', as: 'update_book'
+  get '/summoner/:region/:summoner_id', to: 'books#show', as: 'book'
+  post '/summoner/:region/:summoner_id', to: 'books#update', as: 'update_book'
 
 #champions
-  get '/summoner/:summoner_id/champion/:champion_id', to: 'champions#show', as: 'champion'
-  get '/summoner/:summoner_id/champions', to: 'champions#index', as: 'champions'
+  get '/summoner/:region/:summoner_id/champion/:champion_id', to: 'champions#show', as: 'champion'
+  get '/summoner/:region/:summoner_id/champions', to: 'champions#index', as: 'champions'
 
 #comments
   post '/comment', to: 'comments#new', as: 'new_comment'

@@ -5,12 +5,22 @@ class Book < ActiveRecord::Base
   validates :summoner_name, presence: true
 
   def self.create_from_summoner(summoner)
-    Book.create(summoner_id: summoner["id"], summoner_name: summoner["name"])
+    if summoner then
+      Book.create(
+        summoner_id: summoner["id"],
+        summoner_name: summoner["name"],
+        region: summoner["region"]
+      )
+    else
+    end
   end
 
   def update_summoner(summoner)
     if summoner then
-      self.update(summoner_name: summoner["name"])
+      self.update(
+        summoner_name: summoner["name"],
+        region: summoner["region"]
+      )
     end
     return self
     #TODO this sucks

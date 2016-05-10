@@ -2,8 +2,12 @@ module RiotApi
   def self.summoner_by_name(name, region="na")
     key = ENV['RIOT_KEY']
     url_name = URI.escape(name)
-    url = "https://na.api.pvp.net/api/lol/#{region}/v1.4/summoner/by-name/#{url_name}?api_key=#{key}"
+    url = "https://#{region}.api.pvp.net/api/lol/#{region}/v1.4/summoner/by-name/#{url_name}?api_key=#{key}"
+    puts url
     data = self.request(url)
+    if !data then
+      return false
+    end
     summoner = data.values.first #API returns an object with the player's name as a key
     if summoner.has_key? "id" then
       return summoner
@@ -14,18 +18,24 @@ module RiotApi
 
   def self.summoner_by_id(summoner_id, region="na")
     key = ENV['RIOT_KEY']
-    url = "https://na.api.pvp.net/api/lol/#{region}/v1.4/summoner/#{summoner_id}?api_key=#{key}"
+    url = "https://#{region}.api.pvp.net/api/lol/#{region}/v1.4/summoner/#{summoner_id}?api_key=#{key}"
     data = self.request(url)
+    if !data then
+      return false
+    end
     if data.has_key? summoner_id then
-      return data[summoner_id]
+      data = data[summoner_id]
+      data["region"] = region
+      return data
     else
       return false
     end
   end
 
-  def self.champion_mastery(summoner_id, region="NA1")
+  def self.champion_mastery(summoner_id, region="na")
+    mastery_region = self.mastery_region(region)
     key = ENV['RIOT_KEY']
-    url = "https://na.api.pvp.net/championmastery/location/#{region}/player/#{summoner_id}/champions?api_key=#{key}"
+    url = "https://#{region}.api.pvp.net/championmastery/location/#{mastery_region}/player/#{summoner_id}/champions?api_key=#{key}"
     data = self.request(url) #array expected
     example = data.first
     if example.has_key? "championId" then
@@ -78,4 +88,23 @@ module RiotApi
       return false
     end
   end
+
+  def self.mastery_region(region)
+    regions = {
+      br: "BR1",
+      eune: "EUN1",
+      euw: "EUW1",
+      jp: "JP1",
+      kr: "KR",
+      lan: "LA1",
+      las: "LA2",
+      na: "NA1",
+      oce: "OC1",
+      ru: "RU",
+      tr: "TR1"
+    }
+    return regions[region.downcase.to_sym] || region
+  end
 end
+
+#TODO this whole thing smells
