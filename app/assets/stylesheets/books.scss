@@ -47,10 +47,23 @@ button.update{
   }
   input[type="checkbox"] ~ span {
     background-color: rgba(#ffffff, 0.8);
+    &:hover{
+      cursor: pointer;
+    }
   }
   input[type="checkbox"]:checked ~ span {
     background-color: rgba(#ffffff, 0.3);
     color:gray;
+  }
+  .xs-checkfilter{
+    padding: 4px 10px;
+  }
+  .visible-xs label{
+    text-align: center;
+    display: block;
+    input[type="checkbox"]:checked ~ span {
+      text-decoration: line-through;
+    }
   }
 
   .visible-xs button{
@@ -61,6 +74,14 @@ button.update{
   }
   .dropdown-menu {
     width:100%;
+    li:hover{
+      cursor: pointer;
+    }
+  }
+  .toggle-closed{
+    text-align: center;
+    color: gray;
+    padding: 4px 10px;
   }
 }
 

@@ -11,7 +11,7 @@
 </div>
 
 <div id="champions" data-need-update="<%= @book.champions.count < 1 %>">
-  <%= render partial: "champion_thumbs", locals: {champions: @book.champions, region: @book.region} %>
+  <%= render partial: "champions", locals: {champions: @book.champions, region: @book.region} %>
 </div>
 
 

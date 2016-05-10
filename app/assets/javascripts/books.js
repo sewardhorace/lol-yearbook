@@ -1,10 +1,17 @@
 $(function(){
   //filter champions by grade level
-  $(".level-selectors").on("click", "input", function(e){
+  $(".filter").on("click", "input", function(e){
+    // e.stopPropagation();
     var box = $(this);
     var level = box.val();
     toggleChampionVisibility(level);
     syncCheckboxes(box);
+  });
+
+  $(".dropdown-menu").on("click", "li", function(e){
+    if (!$(this).hasClass("toggle-closed")){
+      e.stopPropagation();
+    }
   });
 
   var toggleChampionVisibility = function(level){
@@ -38,7 +45,7 @@ $(function(){
   var generateNewBook = function() {
     var btn = $("button.update");
     btn.hide();
-    $(".level-selectors").after("<p class='text-center'><span class='glyphicon glyphicon-refresh spinning big'></span></p><p class='text-center status'>Generating...</p>");
+    $("#champions").html("<p class='text-center'><span class='glyphicon glyphicon-refresh spinning big'></span></p><p class='text-center status'>Generating...</p>");
     updateBook({
       success: function( result ) {
         console.log("Success!");
@@ -78,4 +85,5 @@ $(function(){
       generateNewBook();
     }
   }
+
 });
