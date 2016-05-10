@@ -35,15 +35,24 @@ button.update{
 
 .level-selectors{
   text-align: center;
-  .hidden-xs input{
-    background-color: rgba(255, 255, 255, 0.5);
-    &:focus{
-      outline: none;
-    }
-    &.active:focus, :active:focus, :active:hover{
-      background-color: rgba(255, 255, 255, 0.5);
+
+  .sm-checkfilter{
+    padding: 4px 10px;
+    &:hover{
+      background-color: rgba(#e4e4e4, 0.8);
     }
   }
+  input[type="checkbox"] {
+    display:none;
+  }
+  input[type="checkbox"] ~ span {
+    background-color: rgba(#ffffff, 0.8);
+  }
+  input[type="checkbox"]:checked ~ span {
+    background-color: rgba(#ffffff, 0.3);
+    color:gray;
+  }
+
   .visible-xs button{
     background-color: rgba(255, 255, 255, 0.5);
   }
@@ -52,20 +61,19 @@ button.update{
   }
   .dropdown-menu {
     width:100%;
-    input{
-      border: none;
-      border-radius: 0;
-      width: 100%;
-      &:hover{
-        border: none;
-        border-radius: 0;
-      }
-    }
   }
+}
+
+.hidden{
+
 }
 
 .grade-label{
   text-align: center;
+  padding: 6px 0;
+  border-bottom: 2px solid black;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .thumb{

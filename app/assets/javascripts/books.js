@@ -1,29 +1,29 @@
 $(function(){
   //filter champions by grade level
   $(".level-selectors").on("click", "input", function(e){
-    var btn = $(this);
-    $(".level-selectors .btn-group").removeClass("open");
-    $(".level-selectors input").removeClass("active");
-    btn.addClass("active");
-    var data = {
-      "filter": btn.data("grade")
-    };
-    $.ajax({
-      type: "GET",
-      url: btn.data("url"),
-      data: data,
-      dataType: 'script',
-      encode: true,
-      success: function( result ) {
-        console.log("SUCCESS");
-      },
-      error: function( error ) {
-        console.log("ERROR");
-        var message = error.responseText;
-        console.log(message);
-      }
-    });
+    var box = $(this);
+    var level = box.val();
+    toggleChampionVisibility(level);
+    syncCheckboxes(box);
   });
+
+  var toggleChampionVisibility = function(level){
+    var section = $("#_" + level);
+    if (section.hasClass("hidden")){
+      section.removeClass("hidden");
+    } else {
+      section.addClass("hidden");
+    }
+  };
+
+  var syncCheckboxes = function(checkbox){
+    var boxes = $("input._" + checkbox.val());
+    if (checkbox.prop("checked")){
+      boxes.prop("checked", true);
+    } else {
+      boxes.prop("checked", false);
+    }
+  };
 
   var updateBook = function(callbacks){
     var url = $("button.update").data("update-url");

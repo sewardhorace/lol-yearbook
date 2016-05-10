@@ -18,13 +18,9 @@ class BooksController < ApplicationController
     summoner_id = params[:summoner_id]
     region = params[:region]
     book = Book.find_by(summoner_id: summoner_id, region: region)
-    puts "BOOK"
-    puts params
-    puts book
     if !book then
       book = Book.create_from_summoner(RiotApi.summoner_by_id(summoner_id, region))
     end
-
     respond_to do |format|
       format.html do
         if @book = Book.includes(champions: [:static_data]).find(book.id) then
@@ -38,8 +34,9 @@ class BooksController < ApplicationController
 
   def update
     summoner_id =  params[:summoner_id]
+    region = params[:region]
     respond_to do |format|
-      if book = Book.find_by(summoner_id: summoner_id) then
+      if book = Book.find_by(summoner_id: summoner_id, region: region) then
         book.update_summoner(RiotApi.summoner_by_id(summoner_id, book.region))
         book.update_champions(RiotApi.champion_mastery(summoner_id, book.region))
         flash[:success] = 'Yearbook now up to date.'

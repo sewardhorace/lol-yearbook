@@ -1,17 +1,21 @@
 class ChampionsController < ApplicationController
   def index
+    summoner_id = params[:summoner_id]
+    region = params[:region]
     respond_to do |format|
-      format.html {redirect_to book_path(params[:region], params[:summoner_id])}
-      format.js do
-        book = Book.find_by(summoner_id: params[:summoner_id])
-        @champions = Champion.includes(:static_data, comments: [:author, :votes]).where(book_id: book.id, mastery_level: params[:filter])
-        render "champions/index"
+      format.html {redirect_to book_path(region, summoner_id)}
+      format.json do
+        book = Book.find_by(summoner_id: summoner_id, region: region)
+        @champions = Champion.includes(:static_data, comments: [:author, :votes]).where(book_id: book.id)
+        render json: @champions
       end
     end
   end
 
   def show
-    book = Book.find_by(summoner_id: params[:summoner_id])
+    summoner_id = params[:summoner_id]
+    region = params[:region]
+    book = Book.find_by(summoner_id: summoner_id, region: region)
     champion = Champion.find_by(book_id: book.id, champion_id: params[:champion_id])
     respond_to do |format|
       format.html do

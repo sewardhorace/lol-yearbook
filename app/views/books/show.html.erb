@@ -4,14 +4,14 @@
     <header>
       <h3 class="title"><%= @book.summoner_name  %>'s Yearbook</h3>
       <br class="visible-xs">
-      <%= render partial: "books/update_button", locals: {book: @book} %>
-      <%= render partial: "books/filter_control" %>
+      <%= render partial: "update_button", locals: {book: @book} %>
+      <%= render partial: "filter_control" %>
     </header>
   </div>
 </div>
 
 <div id="champions" data-need-update="<%= @book.champions.count < 1 %>">
-  <%= render partial: "champion_thumbs", locals: {champions: @book.champions.where(mastery_level: 5), region: @book.region} %>
+  <%= render partial: "champion_thumbs", locals: {champions: @book.champions, region: @book.region} %>
 </div>
 
 

@@ -1,67 +1,52 @@
 <div class="level-selectors">
+
   <div class="btn-group hidden-xs" role="group">
-    <input
-      type="button"
-      class="btn btn-default"
-      data-grade="2"
-      data-url="<%= champions_path %>"
-      value="Freshmen">
-    <input
-      type="button"
-      class="btn btn-default"
-      data-grade="3"
-      data-url="<%= champions_path %>"
-      value="Sophomores">
-    <input
-      type="button"
-      class="btn btn-default"
-      data-grade="4"
-      data-url="<%= champions_path %>"
-      value="Juniors">
-    <input
-      type="button"
-      class="btn btn-default active"
-      data-grade="5"
-      data-url="<%= champions_path %>"
-      value="Seniors">
+    <label>
+      <input type="checkbox" value="2" class="_2">
+      <span class="sm-checkfilter">Level 2</span>
+    </label>
+    <label>
+      <input type="checkbox" value="3" class="_3">
+      <span class="sm-checkfilter">Level 3</span>
+    </label>
+    <label>
+      <input type="checkbox" value="4" class="_4">
+      <span class="sm-checkfilter">Level 4</span>
+    </label>
+    <label>
+      <input type="checkbox" value="5" class="_5">
+      <span class="sm-checkfilter">Level 5</span>
+    </label>
   </div>
-  <div class="btn-group visible-xs">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Select Class<span class="caret"></span>
-    </button>
+
+  <div class="button-group visible-xs">
+    <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">Filter By Mastery</button>
     <ul class="dropdown-menu">
       <li>
-        <input
-          type="button"
-          class="btn btn-default"
-          data-grade="5"
-          data-url="<%= champions_path %>"
-          value="Seniors">
-        </li>
-      <li>
-        <input
-          type="button"
-          class="btn btn-default"
-          data-grade="4"
-          data-url="<%= champions_path %>"
-          value="Juniors">
-        </li>
-      <li>
-        <input
-          type="button"
-          class="btn btn-default"
-          data-grade="3"
-          data-url="<%= champions_path %>"
-          value="Sophomores">
+        <label class="checkbox-inline">
+          <input type="checkbox" value="5" class="_5">
+          <span>Level 5</span>
+        </label>
       </li>
       <li>
-        <input
-          type="button"
-          class="btn btn-default"
-          data-grade="2"
-          data-url="<%= champions_path %>"
-          value="Freshmen">
+        <label class="checkbox-inline">
+          <input type="checkbox" value="4" class="_4">
+          <span>Level 4</span>
+        </label>
+      </li>
+      <li>
+        <label class="checkbox-inline">
+          <input type="checkbox" value="3" class="_3">
+          <span>Level 3</span>
+        </label>
+      </li>
+      <li>
+        <label class="checkbox-inline">
+          <input type="checkbox" value="2" class="_2">
+          <span>Level 2</span>
+        </label>
       </li>
     </ul>
   </div>
+
 </div>
