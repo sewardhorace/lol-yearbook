@@ -27,19 +27,10 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       format.html do
-        if @book = Book.includes(champions: [:static_data], comments: [:author, :votes]).find(book.id) then
+        if @book = Book.includes(champions: [:static_data]).find(book.id) then
           render "books/show"
         else
           render "shared/not_found"
-        end
-      end
-
-      format.js do
-        if book && @comments = book.comments.includes(:author, :votes).paginate(page: params[:page]) then
-          @region = book.region
-          render "comments/paginate"
-        else
-          render nothing: true
         end
       end
     end

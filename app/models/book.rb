@@ -1,6 +1,6 @@
 class Book < ActiveRecord::Base
   has_many :champions, dependent: :destroy
-  has_many :comments, dependent: :destroy
+  # has_many :comments, dependent: :destroy
   validates :summoner_id, presence: true, uniqueness: true
   validates :summoner_name, presence: true
 

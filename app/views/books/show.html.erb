@@ -14,8 +14,6 @@
   <%= render partial: "champion_thumbs", locals: {champions: @book.champions.where(mastery_level: 5), region: @book.region} %>
 </div>
 
-<%= render partial: "comments/comments", locals: {comments: @book.comments.paginate(page: params[:page]), comment_type: "BookComment", type_id: @book.id } %>
-
 
 <script>
 $(function(){
