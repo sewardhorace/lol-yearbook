@@ -1,0 +1,21 @@
+<div class="col-sm-4 col-md-3">
+  <div class="thumb">
+    <a href="<%= url %>">
+      <img
+        src="<%= champion.static_data.profile_url %>"
+        alt="<%= champion.static_data.name %> <%= champion.champion_id %>"
+      >
+    </a>
+    <div class="info">
+      <h4>
+        <% if champion.chest_earned %>
+        <span class="glyphicon glyphicon-star"></span>
+        <% end %>
+        <a href="<%= url %>">
+          <%= champion.static_data.name %>
+        </a>
+      </h4>
+      <p>Mastery Points: <%= champion.mastery_points %></p>
+    </div>
+  </div>
+</div>
