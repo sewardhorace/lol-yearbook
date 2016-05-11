@@ -13,58 +13,71 @@ button.submit-btn{
   .comment{
     padding: 10px 10px;
     border-top: 1px solid gray;
-    .text{
-      margin-top: 10px;
-      margin-bottom:0;
+    .comment-pic{
+      float:left;
+      margin-right: 10px;
+      display: inline-block;
     }
-    .signature-block {
-      text-align: right;
-      input.delete-btn{
-        border:none;
-        background-color:inherit;
-        padding: 0;
-        color: #a66363;
-        &:hover{
-          color: #b10000;
-        }
-        &:active{
-          box-shadow: none;
-          outline: none;
-        }
-        &:focus{
-          outline: none;
-        }
+    .comment-body{
+      display: inline-block;
+    }
+    input{
+      border:none;
+      background-color:inherit;
+      padding:0;
+      padding-left: 6px;
+      vertical-align: baseline;
+      &:active{
+        box-shadow: none;
+        outline: none;
       }
-      .time{
-        color: gray;
-        padding-right: 6px;
+      &:focus{
+        outline: none;
       }
-      .score{
-        color: gray;
-        padding-right: 6px;
+      &:active:focus{
+        background-color: inherit;
       }
-      .vote-btn{
-        padding: 6px;
-        display: inline;
-        color: gray;
+    }
+    .reply-btn{
+      color: #808080;
+      &:hover{
+        color: #5e5e5e;
       }
-      .up{
-        margin-left:3px;
-        &:hover {
-          color:#2c3894;
-        }
-        &.active {
-          color:#2c3894;
-        }
+    }
+    .delete-btn{
+      color: #a66363;
+      &:hover{
+        color: #b10000;
       }
-      .down{
-        margin-right:3px;
-        &:hover {
-          color:#942c2c;
-        }
-        &.active {
-          color:#942c2c;
-        }
+    }
+    .time{
+      color: gray;
+      margin-left: 4px;
+      font-size: 12px;
+    }
+    .score{
+      color: gray;
+    }
+    .vote-btn{
+      padding: 2px;
+      display: inline;
+      color: gray;
+      margin-right: 6px;
+    }
+    .up{
+      &:hover {
+        color:#2c3894;
+      }
+      &.active {
+        color:#2c3894;
+      }
+    }
+    .down{
+      &:hover {
+        color:#942c2c;
+      }
+      &.active {
+        color:#942c2c;
       }
     }
   }

@@ -1,22 +1,20 @@
 <div class="comment" id="comment-<%=comment.id%>">
 
-  <p class="text"><%= comment.text %></p>
+  <%= image_tag comment.author.img_url, class: "twitter-pic comment-pic" %>
 
-  <div class="signature-block">
-    <span class="visible-xs">
-      <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
-      <br>
-    </span>
+  <div class="comment-body">
 
-    <%= render partial: "comments/delete_button", locals:{comment: comment} %>
+    <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
+    <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+
+    <p class="text"><%= comment.text %></p>
 
     <%= render partial: "comments/vote", locals:{comment: comment} %>
 
-    <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+    <%= render partial: "comments/reply_button" %>
 
-    <span class="hidden-xs">
-      <a href="<%= comment.author.url %>"><%= comment.author.name %></a>
-      <%= image_tag comment.author.img_url, class: "twitter-pic" %>
-    </span>
+    <%= render partial: "comments/delete_button", locals:{comment: comment} %>
+    
   </div>
+
 </div>
