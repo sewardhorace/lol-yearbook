@@ -41,7 +41,7 @@
 
 </div>
 
-<%= render partial: "comments/comments", locals: {comments: @champion.comments.paginate(page: params[:page]), comment_type: "ChampionComment", type_id: @champion.id } %>
+<%= render partial: "comments/comments", locals: {comments: @champion.comments.paginate(page: params[:page]), comment_type: "ChampionComment", resource_id: @champion.id } %>
 
 <script>
 $(function(){

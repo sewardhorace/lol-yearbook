@@ -1,4 +1,4 @@
-$('#infinite-scrolling').append("<%= escape_javascript(render partial: 'comments/list', locals: {comments: @comments}) %>");
+$('#comments').append("<%= escape_javascript(render partial: 'comments/list', locals: {comments: @comments}) %>");
 <% if @comments.next_page %>
   $('.pagination').replaceWith('<%= escape_javascript(will_paginate @comments) %>');
 <% else %>

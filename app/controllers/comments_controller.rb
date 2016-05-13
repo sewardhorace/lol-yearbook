@@ -4,7 +4,11 @@ class CommentsController < ApplicationController
     respond_to do |format|
       format.js do
         if @comment.valid? then
-          render "comments/new", status: :created
+          if @comment.type == "Reply" then
+            render "comments/new_reply", status: :created
+          else
+            render "comments/new", status: :created
+          end
         elsif !current_user then
           render text: "You must log in to comment", status: :unauthorized
         else

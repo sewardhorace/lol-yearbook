@@ -1,0 +1,11 @@
+<form class="comment-form hidden" data-url="<%= new_comment_path %>">
+  <textarea
+    name="commentTextArea"
+    class="form-control"
+    rows="3"
+    placeholder="Reply..."
+    data-type="Reply"
+    data-id="<%=parent_id%>"
+  ></textarea>
+  <button type="submit" class="submit-btn btn btn-primary">Submit</button>
+</form>

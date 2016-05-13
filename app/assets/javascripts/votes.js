@@ -1,5 +1,5 @@
 $(function(){
-  $( ".comments-list").on("click", ".vote-btn", function(e) {
+  $( "#comments").on("click", ".vote-btn", function(e) {
     var btn = $(this);
     if (!btn.data("id")){
       return;

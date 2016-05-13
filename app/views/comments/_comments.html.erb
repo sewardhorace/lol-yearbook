@@ -3,12 +3,12 @@
   <div class="col-xs-12 col-md-8">
     <h3>Notes:</h3>
     <% if current_user %>
-      <%= render partial: "comments/form", locals: {comment_type: comment_type, type_id: type_id } %>
+      <%= render partial: "comments/form", locals: {comment_type: comment_type, resource_id: resource_id } %>
     <% else %>
       <p class="text-center"><%= link_to 'Log in with Twitter',  '/auth/twitter' %> to write a note.</p>
     <% end %>
 
-    <div class="comments-list" id="infinite-scrolling">
+    <div id="comments">
       <%= render partial: "comments/list", locals: {comments: comments}%>
     </div>
 

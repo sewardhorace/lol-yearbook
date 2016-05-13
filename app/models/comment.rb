@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
   belongs_to :author, class_name: "User", foreign_key: "user_id"
   has_many :votes, dependent: :destroy
+  has_many :replies, dependent: :destroy
   validates :user_id, :text, presence: true
 
   self.per_page = 10
@@ -16,6 +17,12 @@ class Comment < ActiveRecord::Base
     elsif type == "BookComment" then
       comment = BookComment.create(
         book_id: params[:id],
+        text: params[:text].strip,
+        user_id: params[:user_id]
+      )
+    elsif type == "Reply" then
+      comment = Reply.create(
+        comment_id: params[:id],
         text: params[:text].strip,
         user_id: params[:user_id]
       )

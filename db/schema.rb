@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510031735) do
+ActiveRecord::Schema.define(version: 20160513181039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -45,10 +45,12 @@ ActiveRecord::Schema.define(version: 20160510031735) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "comment_id"
   end
 
   add_index "comments", ["book_id"], name: "index_comments_on_book_id", using: :btree
   add_index "comments", ["champion_id"], name: "index_comments_on_champion_id", using: :btree
+  add_index "comments", ["comment_id"], name: "index_comments_on_comment_id", using: :btree
 
   create_table "static_champions", force: :cascade do |t|
     t.integer  "champion_id"

@@ -1,8 +1,9 @@
-<% if false %>
+<% if current_user %>
 <span>
   <input
     type="button"
     value="Reply"
+    data-id="<%= id %>"
     class="btn btn-default reply-btn"
   >
 </span>

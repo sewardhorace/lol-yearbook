@@ -1,0 +1,8 @@
+
+<%= render partial: "comments/reply_form", locals:{parent_id: parent_id} %>
+
+<div class="replies replies-<%= parent_id %>">
+  <% replies.each do |reply| %>
+    <%= render partial: "comments/reply", locals:{comment: reply} %>
+  <% end %>
+</div>

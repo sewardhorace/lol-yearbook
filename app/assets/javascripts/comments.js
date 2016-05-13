@@ -1,7 +1,7 @@
 $(function(){
   //infinite scroll
   var readyToPaginate = true;
-  if ($('#infinite-scrolling').size() > 0){
+  if ($('#comments').size() > 0){
     $(window).on('scroll', function(){
       if (readyToPaginate){
         var morePostsUrl = $('.pagination a.next_page').attr('href')
@@ -19,7 +19,8 @@ $(function(){
   //submission
   $( "form.comment-form").on("submit", function(e) {
     e.preventDefault();
-    var textarea = $('textarea[name=commentTextArea]')
+    var form = $(this);
+    var textarea = form.children('textarea[name=commentTextArea]');
     var text = $.trim(textarea.val());
     if (!text) {
       console.log("No content");
@@ -35,13 +36,16 @@ $(function(){
     };
     $.ajax({
       type: "POST",
-      url: $(this).data("url"),
+      url: form.data("url"),
       data: data,
       dataType: 'script',
       encode: true,
       success: function( result ) {
         console.log("SUCCESS");
         textarea.val("");
+        if (textarea.data("type") === "Reply"){
+          $(form).toggleClass("hidden");
+        }
       },
       error: function( error ) {
         console.log("ERROR");
@@ -51,8 +55,15 @@ $(function(){
     });
   });
 
+  //replying
+  $( "#comments").on("click", "input.reply-btn", function(e) {
+    var btn = $(this);
+    var id = btn.data("id");
+    $("#comment-" + id + " form").toggleClass("hidden");
+  });
+
   //deletion
-  $( ".comments-list").on("click", "input.delete-btn", function(e) {
+  $( "#comments").on("click", "input.delete-btn", function(e) {
     e.preventDefault();
     var result = window.confirm("Are you sure you want to delete this note?");
     if (!result){

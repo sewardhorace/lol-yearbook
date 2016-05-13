@@ -16,11 +16,7 @@ $(function(){
 
   var toggleChampionVisibility = function(level){
     var section = $("#_" + level);
-    if (section.hasClass("hidden")){
-      section.removeClass("hidden");
-    } else {
-      section.addClass("hidden");
-    }
+    section.toggleClass("hidden");
   };
 
   var syncCheckboxes = function(checkbox){

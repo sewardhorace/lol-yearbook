@@ -16,18 +16,13 @@
     </div>
 
     <div class="comment-footer">
+
       <%= render partial: "comments/vote", locals:{comment: comment} %>
 
-      <%= render partial: "comments/reply_button", locals:{id: comment.id} %>
-
       <%= render partial: "comments/delete_button", locals:{comment: comment} %>
+
     </div>
 
-  </div>
-
-
-  <div class="reply-box">
-    <%= render partial: "comments/replies", locals:{parent_id: comment.id, replies: comment.replies} %>
   </div>
 
 </div>
