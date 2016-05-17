@@ -1,0 +1,3 @@
+<% replies.order(:created_at).each do |reply| %>
+  <%= render partial: "comments/reply", locals:{comment: reply} %>
+<% end %>

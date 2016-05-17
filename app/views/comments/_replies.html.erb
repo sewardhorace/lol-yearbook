@@ -2,7 +2,29 @@
 <%= render partial: "comments/reply_form", locals:{parent_id: parent_id} %>
 
 <div class="replies replies-<%= parent_id %>">
-  <% replies.each do |reply| %>
-    <%= render partial: "comments/reply", locals:{comment: reply} %>
+
+  <% if replies.count > 2 %>
+  <div class="view-toggles">
+    <input
+      type="button"
+      value='<%= "View all #{replies.count} replies" %>'
+      data-id="<%= parent_id %>"
+      class="btn btn-default show-btn"
+    >
+    <input
+      type="button"
+      value="Hide replies"
+      data-id="<%= parent_id %>"
+      class="btn btn-default hide-btn hidden"
+    >
+  </div>
   <% end %>
+
+  <div class="latest">
+    <%= render partial: "comments/reply_list", locals:{replies: replies.recent} %>
+  </div>
+
+  <div class="all hidden">
+  </div>
+
 </div>

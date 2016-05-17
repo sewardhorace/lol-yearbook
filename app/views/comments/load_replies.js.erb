@@ -1,0 +1,1 @@
+$("#comment-<%= @comment.id %> .all").html("<%= escape_javascript(render partial: 'comments/reply_list', locals: {replies: @comment.replies}) %>");

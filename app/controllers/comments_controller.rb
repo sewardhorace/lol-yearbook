@@ -29,6 +29,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def replies
+    respond_to do |format|
+      if @comment = Comment.includes(replies: [:author, :votes]).find(comment_params[:id]) then
+        format.js {render "comments/load_replies", status: :ok}
+      else
+        format.js {render text: "Not found", status: :not_found}
+      end
+      format.html {redirect_to "shared/not_found"}
+    end
+  end
+
   def vote
     respond_to do |format|
       flag = comment_params[:vote_flag]

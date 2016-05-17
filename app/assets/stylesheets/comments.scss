@@ -13,6 +13,23 @@ button.submit-btn{
   padding: 10px;
   padding-bottom: 0;
   border-top: 1px solid gray;
+  input.btn{
+    border:none;
+    background-color:inherit;
+    padding:0;
+    padding-left: 6px;
+    vertical-align: baseline;
+    &:active{
+      box-shadow: none;
+      outline: none;
+    }
+    &:focus{
+      outline: none;
+    }
+    &:active:focus{
+      background-color: inherit;
+    }
+  }
   .comment-photo{
     float:left;
     display: inline-block;
@@ -36,23 +53,6 @@ button.submit-btn{
     }
     .comment-footer{
       margin-bottom: 6px;
-      input.btn{
-        border:none;
-        background-color:inherit;
-        padding:0;
-        padding-left: 6px;
-        vertical-align: baseline;
-        &:active{
-          box-shadow: none;
-          outline: none;
-        }
-        &:focus{
-          outline: none;
-        }
-        &:active:focus{
-          background-color: inherit;
-        }
-      }
       .reply-btn{
         color: #808080;
         &:hover{
@@ -98,6 +98,14 @@ button.submit-btn{
     .reply-form{
       textarea{
         background-color: rgba(255, 255, 255, 0.3);
+      }
+    }
+    .show-btn, .hide-btn{
+      margin-top: -3px;
+      margin-bottom: 3px;
+      color: #808080;
+      &:hover{
+        color: #5e5e5e;
       }
     }
   } // end .reply-box

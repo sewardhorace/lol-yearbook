@@ -55,13 +55,6 @@ $(function(){
     });
   });
 
-  //replying
-  $( "#comments").on("click", "input.reply-btn", function(e) {
-    var btn = $(this);
-    var id = btn.data("id");
-    $("#comment-" + id + " form").toggleClass("hidden");
-  });
-
   //deletion
   $( "#comments").on("click", "input.delete-btn", function(e) {
     e.preventDefault();
@@ -93,4 +86,66 @@ $(function(){
       }
     });
   });
+
+  //replies
+  $("#comments").on("click", "input.reply-btn", function(e) {
+    var btn = $(this);
+    var id = btn.data("id");
+    $("#comment-" + id + " form").toggleClass("hidden");
+  });
+
+  $("#comments").on("click", "input.show-btn", function(e) {
+    var btn = $(this);
+    var id = btn.data("id");
+    var all = $("#comment-"+id+" .all");
+    if (all.children().length === 0){
+      loadReplies(id);
+    } else {
+      btn.addClass("hidden");
+      $("#comment-"+id+" .latest").addClass("hidden");
+      all.removeClass("hidden");
+      $("#comment-"+id+" .hide-btn").removeClass("hidden");
+    }
+  });
+
+  $("#comments").on("click", "input.hide-btn", function(e) {
+    var btn = $(this);
+    var id = btn.data("id");
+    btn.addClass("hidden");
+    $("#comment-"+id+" .all").addClass("hidden");
+    $("#comment-"+id+" .latest").removeClass("hidden");
+    $("#comment-"+id+" .show-btn").removeClass("hidden");
+  });
+
+  var loadReplies = function(id){
+    $("#comment-"+id+" .view-toggles").append("<span class='glyphicon glyphicon-refresh spinning'></span>");
+    var comment = {
+      'id': id,
+    };
+    var data = {
+      "comment": comment
+    };
+    $.ajax({
+      type: "GET",
+      url: "/comment/" + id + "/replies",
+      data: data,
+      dataType: 'script',
+      encode: true,
+      success: function( result ) {
+        console.log("SUCCESS");
+        $("#comment-"+id+" .glyphicon-refresh").remove();
+        $("#comment-"+id+" .show-btn").addClass("hidden");
+        $("#comment-"+id+" .latest").addClass("hidden");
+        $("#comment-"+id+" .all").removeClass("hidden");
+        $("#comment-"+id+" .hide-btn").removeClass("hidden");
+      },
+      error: function( error ) {
+        console.log("ERROR");
+        var message = error.responseText;
+        console.log(message);
+        $("#comment-"+id+" .glyphicon-refresh").remove();
+        $("#comment-"+id+" .view-toggles").append("<span>Error</span>");
+      }
+    });
+  };
 });

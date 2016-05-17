@@ -4,6 +4,8 @@ class Comment < ActiveRecord::Base
   has_many :replies, dependent: :destroy
   validates :user_id, :text, presence: true
 
+  scope :recent, -> { order(created_at: :desc).limit(2) }
+
   self.per_page = 10
 
   def self.create_from_type(params)
