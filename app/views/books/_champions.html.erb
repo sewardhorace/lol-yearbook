@@ -1,11 +1,13 @@
 <div class="row">
 
-<%= render partial: "grade_group", locals:{grade_level: "Seniors", region: region, champions: champions.where(mastery_level: 5)} %>
+<%= render partial: "grade_group", locals:{title: "Distinguished Alumni", id: "alumni", region: region, champions: champions.where(mastery_level: [6, 7])} %>
 
-<%= render partial: "grade_group", locals:{grade_level: "Juniors", region: region, champions: champions.where(mastery_level: 4)} %>
+<%= render partial: "grade_group", locals:{title: "Seniors", id: "seniors", region: region, champions: champions.where(mastery_level: 5)} %>
 
-<%= render partial: "grade_group", locals:{grade_level: "Sophomores", region: region, champions: champions.where(mastery_level: 3)} %>
+<%= render partial: "grade_group", locals:{title: "Juniors", id: "juniors", region: region, champions: champions.where(mastery_level: 4)} %>
 
-<%= render partial: "grade_group", locals:{grade_level: "Freshmen", region: region, champions: champions.where(mastery_level: 2)} %>
+<%= render partial: "grade_group", locals:{title: "Sophomores", id: "sophomores", region: region, champions: champions.where(mastery_level: 3)} %>
+
+<%= render partial: "grade_group", locals:{title: "Freshmen", id: "freshmen", region: region, champions: champions.where(mastery_level: 2)} %>
 
 </div>

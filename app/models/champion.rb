@@ -12,8 +12,10 @@ class Champion < ActiveRecord::Base
     return self.book.summoner_id
   end
 
-  def school_level
+  def grade_level
     return case self.mastery_level
+    when 6, 7
+      "Alum"
     when 5
       "Senior"
     when 4
@@ -27,7 +29,4 @@ class Champion < ActiveRecord::Base
     end
   end
 
-  def self.school_level
-
-  end
 end
