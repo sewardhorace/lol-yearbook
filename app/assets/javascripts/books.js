@@ -1,11 +1,10 @@
 $(function(){
   //filter champions by grade level
   $(".filter").on("click", "input", function(e){
-    // e.stopPropagation();
-    var box = $(this);
-    var level = box.val();
+    var checkbox = $(this);
+    var level = checkbox.val();
     toggleChampionVisibility(level);
-    syncCheckboxes(box);
+    syncCheckboxes(checkbox);
   });
 
   $(".dropdown-menu").on("click", "li", function(e){
@@ -15,12 +14,12 @@ $(function(){
   });
 
   var toggleChampionVisibility = function(level){
-    var section = $("#_" + level);
+    var section = $("#" + level);
     section.toggleClass("hidden");
   };
 
   var syncCheckboxes = function(checkbox){
-    var boxes = $("input._" + checkbox.val());
+    var boxes = $("input." + checkbox.val());
     if (checkbox.prop("checked")){
       boxes.prop("checked", true);
     } else {

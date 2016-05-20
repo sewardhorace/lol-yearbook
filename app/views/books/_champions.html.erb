@@ -1,20 +1,11 @@
 <div class="row">
 
-<% grades = {Seniors: 5, Juniors: 4, Sophomores: 3, Freshmen: 2} %>
-<% grades.each do |key, val| %>
+<%= render partial: "grade_group", locals:{grade_level: "Seniors", region: region, champions: champions.where(mastery_level: 5)} %>
 
-<div class="col-xs-12" id="_<%= val %>">
-  <h4 class="grade-label"><%= key %></h4>
-  <% champs = champions.where(mastery_level: val).order(mastery_points: :desc) %>
-  <% if champs.empty? %>
-    <p class="text-center">none to display</p>
-  <% else %>
-    <% champs.each do |champ| %>
-      <%= render partial: "champion_thumb", locals:{champion: champ, url: champion_path(region, champ.summoner_id, champ.champion_id)} %>
-    <% end %>
-  <% end %>
-</div>
+<%= render partial: "grade_group", locals:{grade_level: "Juniors", region: region, champions: champions.where(mastery_level: 4)} %>
 
-<% end %>
+<%= render partial: "grade_group", locals:{grade_level: "Sophomores", region: region, champions: champions.where(mastery_level: 3)} %>
+
+<%= render partial: "grade_group", locals:{grade_level: "Freshmen", region: region, champions: champions.where(mastery_level: 2)} %>
 
 </div>
