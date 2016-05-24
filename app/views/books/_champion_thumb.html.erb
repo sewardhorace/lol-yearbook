@@ -16,6 +16,7 @@
         </a>
       </h4>
       <p>Mastery Points: <%= champion.mastery_points %></p>
+      <p><%= pluralize(champion.comments.count, 'note') %></p>
     </div>
   </div>
 </div>
